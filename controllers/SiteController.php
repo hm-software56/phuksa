@@ -32,7 +32,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                  //  'logout' => ['get'],
                 ],
             ],
         ];
@@ -43,6 +43,9 @@ class SiteController extends Controller
      */
     public function actions()
     {
+        if(Yii::$app->user->id){
+            Yii::$app->layout="main_admin";
+        }
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',

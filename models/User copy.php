@@ -2,45 +2,38 @@
 
 namespace app\models;
 
-use Yii;
-use \app\models\base\User as BaseUser;
-use yii\helpers\ArrayHelper;
-
-/**
- * This is the model class for table "user".
- */
-class User extends BaseUser implements \yii\web\IdentityInterface
+class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
-    private $authKey;
+    public $id;
+    public $username;
+    public $password;
+    public $authKey;
+    public $accessToken;
 
-    public function behaviors()
-    {
-        return ArrayHelper::merge(
-            parent::behaviors(),
-            [
-                # custom behaviors
-            ]
-        );
-    }
+    private static $users = [
+        '100' => [
+            'id' => '100',
+            'username' => 'admin',
+            'password' => 'admin',
+            'authKey' => 'test100key',
+            'accessToken' => '100-token',
+        ],
+        '101' => [
+            'id' => '101',
+            'username' => 'demo',
+            'password' => 'demo',
+            'authKey' => 'test101key',
+            'accessToken' => '101-token',
+        ],
+    ];
 
-    public function rules()
-    {
-        return ArrayHelper::merge(
-            parent::rules(),
-            [
-                # custom validation rules
-            ]
-        );
-    }
 
-    /*===================== for login ======================*/
-    
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' =>1]);
+        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
     }
 
     /**
@@ -65,7 +58,13 @@ class User extends BaseUser implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' =>1]);
+        foreach (self::$users as $user) {
+            if (strcasecmp($user['username'], $username) === 0) {
+                return new static($user);
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -100,7 +99,6 @@ class User extends BaseUser implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-      //  return $this->password === $password;
-      return  Yii::$app->getSecurity()->validatePassword($password,$this->password);
+        return $this->password === $password;
     }
 }
