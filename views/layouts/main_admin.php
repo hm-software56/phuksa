@@ -10,6 +10,7 @@ use app\widgets\Alert;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\helpers\Url;
+use app\models\UserProfile;
 $bundle = yiister\gentelella\assets\Asset::register($this);
 AppAsset::register($this);
 ?>
@@ -69,9 +70,9 @@ AppAsset::register($this);
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
-                                    ["label" => "Home", "url" => "/", "icon" => "home"],
-                                    ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
-                                    ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
+                                    ["label" => "Manage Home", "url" =>Url::toRoute(['home/index']), "icon" => "home"],
+                                    ["label" => "Manage Menu", "url" => Url::toRoute(['menu/index']), "icon" => "files-o"],
+                                    ["label" => "Manage Content", "url" =>  Url::toRoute(['content/index']), "icon" => "list"],
                                     [
                                         "label" => "Widgets",
                                         "icon" => "th",
@@ -171,24 +172,29 @@ AppAsset::register($this);
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                     aria-expanded="false">
+                                    <?php
+                                        $profile=UserProfile::find()->where(['user_id'=>Yii::$app->user->id])->one();
+                                        if($profile)
+                                        {
+                                    ?>
+                                    <img src="<?=Yii::$app->request->baseUrl?>/images/<?=$profile->photo?>"
+                                        alt=""><?=$profile->first_name?>
+                                    <?php
+                                        }else{
+                                            ?>
                                     <img src="http://placehold.it/128x128" alt="">John Doe
+                                    <?php
+                                        }
+                                    ?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="javascript:;"> Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Help</a>
+                                    <li><a href="<?=Url::toRoute(['user/profile'])?>"><i
+                                                class="fa fa-user-circle-o pull-right"></i><?=Yii::t('app','Profile')?></a>
                                     </li>
                                     <li><a href="<?=Url::toRoute(['/site/logout'])?>"><i
                                                 class="fa fa-sign-out pull-right"></i>
-                                            Log Out</a>
+                                            <?=Yii::t('app','Log Out')?></a>
                                     </li>
                                 </ul>
                             </li>

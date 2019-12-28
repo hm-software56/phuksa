@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\Content;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -67,6 +68,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionDetail($id)
+    {
+        $model=Content::find()->where(['id'=>$id])->one();
+        return $this->render('detail',['model'=>$model]);
+    }
     /**
      * Login action.
      *

@@ -2,6 +2,11 @@ html,
 body {
     height: 100%;
     font-family: Arial, Helvetica, sans-serif, "Phetsarath OT" !important;
+    background: url('http://localhost:8080/images/bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 .container_admin {
@@ -17,7 +22,12 @@ body {
 }
 
 .wrap>.container {
-    padding: 70px 15px 20px;
+    padding: 10px 15px 20px;
+    background-color: #f5f5f5;
+}
+
+#pdd {
+    padding: 0px 0px 0px !important;
 }
 
 .footer {
@@ -125,4 +135,39 @@ a.desc:after {
 
 .nav>li>form>button.logout:focus {
     outline: none;
+}
+
+div.gallery {
+    margin: 0px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 100%;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+p {
+    margin: 0px !important;
+}
+
+#titlebg {
+    background-color: #00134d;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
 }

@@ -15,6 +15,7 @@ use Yii;
  * @property string $type
  * @property integer $status
  *
+ * @property \app\models\Home[] $homes
  * @property \app\models\Menu[] $menus
  * @property \app\models\OrderTicket[] $orderTickets
  * @property \app\models\ServiceElectricCar[] $serviceElectricCars
@@ -66,12 +67,20 @@ abstract class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('models', 'ID'),
-            'username' => Yii::t('models', 'Username'),
-            'password' => Yii::t('models', 'Password'),
-            'type' => Yii::t('models', 'Type'),
-            'status' => Yii::t('models', 'Status'),
+            'id' => Yii::t('app', 'ID'),
+            'username' => Yii::t('app', 'Username'),
+            'password' => Yii::t('app', 'Password'),
+            'type' => Yii::t('app', 'Type'),
+            'status' => Yii::t('app', 'Status'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHomes()
+    {
+        return $this->hasMany(\app\models\Home::className(), ['user_id' => 'id']);
     }
 
     /**
@@ -145,8 +154,8 @@ abstract class User extends \yii\db\ActiveRecord
     public static function optsType()
     {
         return [
-            self::TYPE_ADMIN => Yii::t('models', 'Admin'),
-            self::TYPE_USER => Yii::t('models', 'User'),
+            self::TYPE_ADMIN => Yii::t('app', 'Admin'),
+            self::TYPE_USER => Yii::t('app', 'User'),
         ];
     }
 

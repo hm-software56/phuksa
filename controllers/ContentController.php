@@ -3,27 +3,26 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\User;
-use app\models\UserProfile;
-use yii\data\ActiveDataProvider;
+use app\models\Content;
+use app\models\ContentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+
 /**
- * UserController implements the CRUD actions for User model.
+ * ContentController implements the CRUD actions for Content model.
  */
-class UserController extends Controller
+class ContentController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function init()
     {
         if(Yii::$app->user->id){
             Yii::$app->layout="main_admin";
         }
     }
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors()
     {
         return [
@@ -37,22 +36,22 @@ class UserController extends Controller
     }
 
     /**
-     * Lists all User models.
+     * Lists all Content models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => User::find(),
-        ]);
+        $searchModel = new ContentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Content model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,16 +64,20 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Content model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new Content();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save())
+            {
+                Yii::$app->session->setFlash('yes',Yii::t('app','Created successfully.'));
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [
@@ -83,7 +86,7 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Content model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -93,8 +96,12 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save())
+            {
+                Yii::$app->session->setFlash('yes',Yii::t('app','Updated successfully.'));
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('update', [
@@ -102,38 +109,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function actionProfile()
-    {   
-        $model=UserProfile::find()->where(['user_id'=>Yii::$app->user->id])->one();
-        $updated=false;
-        if(!$model)
-        {
-            $model=new UserProfile();
-        }
-        $photo_name=$model->photo;
-        if ($model->load(Yii::$app->request->post())) {
-            $model->user_id=Yii::$app->user->id;
-            $model->photo = UploadedFile::getInstance($model, 'photo');
-            if ($model->photo){       
-                $photo_name='profile_'.date('Ymdhis').'.' . $model->photo->extension;      
-                $model->photo->saveAs(\Yii::$app->basePath.'/web/images/' . $photo_name);
-                $model->photo=$photo_name;
-            }else{
-                $model->photo=$photo_name;
-            }
-            if($model->save())
-            {
-                $updated=true;
-            }
-        }
-        return $this->render('profile', [
-            'model' => $model,
-            'updated'=>$updated
-        ]);
-    }
-
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Content model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -147,15 +124,15 @@ class UserController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Content model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return User the loaded model
+     * @return Content the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = Content::findOne($id)) !== null) {
             return $model;
         }
 
