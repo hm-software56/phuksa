@@ -73,39 +73,7 @@ AppAsset::register($this);
                                     ["label" => "Manage Home", "url" =>Url::toRoute(['home/index']), "icon" => "home"],
                                     ["label" => "Manage Menu", "url" => Url::toRoute(['menu/index']), "icon" => "files-o"],
                                     ["label" => "Manage Content", "url" =>  Url::toRoute(['content/index']), "icon" => "list"],
-                                    [
-                                        "label" => "Widgets",
-                                        "icon" => "th",
-                                        "url" => "#",
-                                        "items" => [
-                                            ["label" => "Menu", "url" => ["site/menu"]],
-                                            ["label" => "Panel", "url" => ["site/panel"]],
-                                        ],
-                                    ],
-                                    [
-                                        "label" => "Badges",
-                                        "url" => "#",
-                                        "icon" => "table",
-                                        "items" => [
-                                            [
-                                                "label" => "Default",
-                                                "url" => "#",
-                                                "badge" => "123",
-                                            ],
-                                            [
-                                                "label" => "Success",
-                                                "url" => "#",
-                                                "badge" => "new",
-                                                "badgeOptions" => ["class" => "label-success"],
-                                            ],
-                                            [
-                                                "label" => "Danger",
-                                                "url" => "#",
-                                                "badge" => "!",
-                                                "badgeOptions" => ["class" => "label-danger"],
-                                            ],
-                                        ],
-                                    ],
+                                    
                                     [
                                         "label" => Yii::t('app','Setting'),
                                         "url" => "#",
@@ -116,19 +84,14 @@ AppAsset::register($this);
                                                 "url" =>Url::toRoute(['user/index']),
                                             ],
                                             [
-                                                "label" => "Second level 2",
-                                                "url" => "#",
-                                                "items" => [
-                                                    [
-                                                        "label" => "Third level 1",
-                                                        "url" => "#",
-                                                    ],
-                                                    [
-                                                        "label" => "Third level 2",
-                                                        "url" => "#",
-                                                    ],
-                                                ],
+                                                "label" =>Yii::t('app','Manage Ticket'),
+                                                "url" =>Url::toRoute(['service-ticket/index']),
                                             ],
+                                            [
+                                                "label" =>Yii::t('app','Manage Electric Car'),
+                                                "url" =>Url::toRoute(['service-electric-car/index']),
+                                            ],
+                                            
                                         ],
                                     ],
                                 ],

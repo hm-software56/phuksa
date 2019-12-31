@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\Content;
+use app\models\Home;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -65,13 +66,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->id)
+        {
+            return $this->render('indexadmin');
+        }else{
+            return $this->render('index');
+        }
+        
     }
 
     public function actionDetail($id)
     {
         $model=Content::find()->where(['id'=>$id])->one();
         return $this->render('detail',['model'=>$model]);
+    }
+
+    public function actionHdetail($id)
+    {
+        $model=Home::find()->where(['id'=>$id])->one();
+        return $this->render('hdetail',['model'=>$model]);
     }
     /**
      * Login action.

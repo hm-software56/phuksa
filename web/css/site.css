@@ -171,3 +171,10 @@ p {
     font-size: 18px;
     padding: 10px;
 }
+
+div.sale {
+    margin: 0px;
+    border: 0px solid #ccc;
+    float: left;
+    width: 100%;
+}

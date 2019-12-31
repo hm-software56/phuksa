@@ -1,5 +1,6 @@
 <?php
 use app\models\Home;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -20,6 +21,10 @@ $this->title = 'My Yii Application';
 
                     <div style="padding:10px;">
                         <div class="desc"><?=$home->details?></div>
+                    </div>
+                    <div style="padding:5px; text-align:right">
+                        <a href=<?=Url::to(['site/hdetail','id'=>$home->id])?>
+                            class="btn btn-primary btn-sm"><?=Yii::t('app','Read More >>')?></a>
                     </div>
                 </div>
             </div>
