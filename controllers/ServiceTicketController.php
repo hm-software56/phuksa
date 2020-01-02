@@ -8,6 +8,9 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\OrderTicket;
+use app\models\ServiceElectricCar;
+use app\models\OrderElectricCar;
 
 /**
  * ServiceTicketController implements the CRUD actions for ServiceTicket model.
@@ -109,6 +112,20 @@ class ServiceTicketController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionSaleticket()
+    {
+        $model=ServiceTicket::find()->all();
+        $model_car=ServiceElectricCar::find()->all();
+        $ordersticket=new OrderTicket;
+        $ordersticket_car=new OrderElectricCar;
+        return $this->render('saleticket', [
+            'model' => $model,
+            'model_car'=>$model_car,
+            'ordersticket'=>$ordersticket,
+            'ordersticket_car'=>$ordersticket_car
         ]);
     }
 

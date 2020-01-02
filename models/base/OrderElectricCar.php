@@ -12,6 +12,7 @@ use Yii;
  * @property integer $id
  * @property string $order_code
  * @property string $order_name
+ * @property integer $quantity
  * @property double $price
  * @property string $status
  * @property string $order_date
@@ -47,8 +48,8 @@ abstract class OrderElectricCar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'order_code', 'order_name', 'price', 'status', 'order_date', 'service_electric_car_id'], 'required'],
-            [['id', 'service_electric_car_id'], 'integer'],
+            [['id', 'order_code', 'order_name', 'quantity', 'price', 'status', 'order_date', 'service_electric_car_id'], 'required'],
+            [['id', 'quantity', 'service_electric_car_id'], 'integer'],
             [['price'], 'number'],
             [['status'], 'string'],
             [['order_date'], 'safe'],
@@ -74,6 +75,7 @@ abstract class OrderElectricCar extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'order_code' => Yii::t('app', 'Order Code'),
             'order_name' => Yii::t('app', 'Order Name'),
+            'quantity' => Yii::t('app', 'Quantity'),
             'price' => Yii::t('app', 'Price'),
             'status' => Yii::t('app', 'Status'),
             'order_date' => Yii::t('app', 'Order Date'),

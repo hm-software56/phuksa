@@ -12,6 +12,7 @@ use Yii;
  * @property integer $id
  * @property string $order_code
  * @property string $order_name
+ * @property integer $quantity
  * @property double $price
  * @property string $status
  * @property string $order_date
@@ -49,11 +50,11 @@ abstract class OrderTicket extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_code', 'order_name', 'price', 'status', 'order_date', 'service_ticket_id', 'user_id'], 'required'],
+            [['order_code', 'order_name', 'quantity', 'price', 'status', 'order_date', 'service_ticket_id', 'user_id'], 'required'],
+            [['quantity', 'service_ticket_id', 'user_id'], 'integer'],
             [['price'], 'number'],
             [['status'], 'string'],
             [['order_date'], 'safe'],
-            [['service_ticket_id', 'user_id'], 'integer'],
             [['order_code', 'order_name'], 'string', 'max' => 255],
             [['service_ticket_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\ServiceTicket::className(), 'targetAttribute' => ['service_ticket_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -75,6 +76,7 @@ abstract class OrderTicket extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'order_code' => Yii::t('app', 'Order Code'),
             'order_name' => Yii::t('app', 'Order Name'),
+            'quantity' => Yii::t('app', 'Quantity'),
             'price' => Yii::t('app', 'Price'),
             'status' => Yii::t('app', 'Status'),
             'order_date' => Yii::t('app', 'Order Date'),
