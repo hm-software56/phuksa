@@ -121,11 +121,43 @@ class ServiceTicketController extends Controller
         $model_car=ServiceElectricCar::find()->all();
         $ordersticket=new OrderTicket;
         $ordersticket_car=new OrderElectricCar;
+        $error=[];
+        $error_car=[];
+        if(Yii::$app->request->post())
+        {
+            Yii::$app->session['sale']=Yii::$app->request->post();
+            $total_amount=0;
+            foreach($model as $model1)
+            {
+                if(!isset(Yii::$app->session['sale']['service_ticket_id_'.$model1->id.'']) && (int)Yii::$app->session['sale']['quantity_'.$model1->id.'']>0){
+                   $error[]=Yii::t('app','Please check ticket')." ". $model1->name. " ".Yii::t('app','Incorrect.!');
+                }else{
+                    $total_amount+=$model1->price*(int)Yii::$app->session['sale']['quantity_'.$model1->id.''];
+                }
+            }
+
+            foreach($model_car as $model_car1)
+            {
+                if(!isset(Yii::$app->session['sale']['service_electric_car_id_'.$model_car1->id.'']) && (int)Yii::$app->session['sale']['quantity_car_'.$model_car1->id.'']>0){
+                    $error_car[]=Yii::t('app','Please check ticket')." ". $model_car1->name. " ".Yii::t('app','Incorrect.!');
+                }else{
+                    $total_amount+=$model_car1->price*(int)Yii::$app->session['sale']['quantity_car_'.$model_car1->id.''];
+                }
+            }
+
+            Yii::$app->session['total_amount']=$total_amount;
+        }else{
+            $error=['Yes'];
+            $error_car=['Yes'];
+        }
+        
         return $this->render('saleticket', [
             'model' => $model,
             'model_car'=>$model_car,
             'ordersticket'=>$ordersticket,
-            'ordersticket_car'=>$ordersticket_car
+            'ordersticket_car'=>$ordersticket_car,
+            'error'=>$error,
+            'error_car'=>$error_car
         ]);
     }
 
