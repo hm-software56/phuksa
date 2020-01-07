@@ -17,9 +17,10 @@ use Yii;
  * @property string $status
  * @property string $order_date
  * @property integer $service_electric_car_id
+ * @property integer $user_id
  *
  * @property \app\models\ServiceElectricCar $serviceElectricCar
- * @property \app\models\OrderTicketHasCar[] $orderTicketHasCars
+ * @property \app\models\User $user
  * @property string $aliasModel
  */
 abstract class OrderElectricCar extends \yii\db\ActiveRecord
@@ -48,15 +49,15 @@ abstract class OrderElectricCar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'order_code', 'order_name', 'quantity', 'price', 'status', 'order_date', 'service_electric_car_id'], 'required'],
-            [['id', 'quantity', 'service_electric_car_id'], 'integer'],
+            [['order_code', 'order_name', 'quantity', 'price', 'status', 'order_date', 'service_electric_car_id', 'user_id'], 'required'],
+            [['quantity', 'service_electric_car_id', 'user_id'], 'integer'],
             [['price'], 'number'],
             [['status'], 'string'],
             [['order_date'], 'safe'],
             [['order_code'], 'string', 'max' => 45],
             [['order_name'], 'string', 'max' => 255],
-            [['id'], 'unique'],
             [['service_electric_car_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\ServiceElectricCar::className(), 'targetAttribute' => ['service_electric_car_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\User::className(), 'targetAttribute' => ['user_id' => 'id']],
             ['status', 'in', 'range' => [
                     self::STATUS_PEDDING,
                     self::STATUS_PAID,
@@ -80,6 +81,7 @@ abstract class OrderElectricCar extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'order_date' => Yii::t('app', 'Order Date'),
             'service_electric_car_id' => Yii::t('app', 'Service Electric Car ID'),
+            'user_id' => Yii::t('app', 'User ID'),
         ];
     }
 
@@ -94,9 +96,9 @@ abstract class OrderElectricCar extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderTicketHasCars()
+    public function getUser()
     {
-        return $this->hasMany(\app\models\OrderTicketHasCar::className(), ['order_electric_car_id' => 'id']);
+        return $this->hasOne(\app\models\User::className(), ['id' => 'user_id']);
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
@@ -11,7 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ticket'), 'url' => [
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['action' =>isset($_GET['b'])?['service-ticket/saleticket']:""]); ?>
 <fieldset class="scheduler-border">
     <legend class="scheduler-border"><?=Yii::t('app','Ticket')?></legend>
     <?php
@@ -32,14 +33,14 @@ foreach($model as $model)
     <div class="col-md-6">
         <div class="checkbox">
             <label>
-                <input type="checkbox"
+                <input type="checkbox" <?=(count($error)==0)?'disabled':''?>
                     <?=isset(Yii::$app->session['sale']['service_ticket_id_'.$model->id.''])?'checked':' '?>
                     name="service_ticket_id_<?=$model->id?>" value="<?=$model->id?>"><?=$name?>
             </label>
         </div>
         <label class="control-label"><?=Yii::t('app','Total')." ".$model->name?></label>
-        <input type="text" id="quantity_<?=$model->id?>" class="form-control" name="quantity_<?=$model->id?>"
-            value="<?=Yii::$app->session['sale']['quantity_'.$model->id.'']?>" />
+        <input type="text" <?=(count($error)==0)?'disabled':''?> id="quantity_<?=$model->id?>" class="form-control"
+            name="quantity_<?=$model->id?>" value="<?=Yii::$app->session['sale']['quantity_'.$model->id.'']?>" />
     </div>
     <?php
 }
@@ -64,14 +65,14 @@ foreach($model_car as $model_car)
     <div class="col-md-6">
         <div class="checkbox">
             <label>
-                <input type="checkbox"
+                <input type="checkbox" <?=(count($error)==0)?'disabled':''?>
                     <?=isset(Yii::$app->session['sale']['service_electric_car_id_'.$model_car->id.''])?'checked':' '?>
                     name="service_electric_car_id_<?=$model_car->id?>" value="<?=$model_car->id?>"><?=$name?>
             </label>
         </div>
         <label class="control-label"><?=Yii::t('app','Total')." ".$model_car->name?></label>
-        <input type="text" id="quantity_car_<?=$model_car->id?>" class="form-control"
-            name="quantity_car_<?=$model_car->id?>"
+        <input type="text" <?=(count($error)==0)?'disabled':''?> id="quantity_car_<?=$model_car->id?>"
+            class="form-control" name="quantity_car_<?=$model_car->id?>"
             value="<?=Yii::$app->session['sale']['quantity_car_'.$model_car->id.'']?>" />
     </div>
     <?php
@@ -81,7 +82,7 @@ foreach($model_car as $model_car)
 <?php 
 if(Yii::$app->session['total_amount'])
 {
-echo "<div align='right'><b>".Yii::t('app','All Total Amount').": ". number_format(Yii::$app->session['total_amount'],2)." ກີບ</br></div>";
+echo "<div align='right' style='color:red'><b>".Yii::t('app','All Total Amount').": ". number_format(Yii::$app->session['total_amount'],2)." ກີບ</br></div>";
 }
 
 ?>
@@ -90,9 +91,20 @@ echo "<div align='right'><b>".Yii::t('app','All Total Amount').": ". number_form
     <?php
 if(count($error_car)==0 && count($error)==0)
 {
-    echo Html::submitButton('<il class="fa fa-shopping-cart"></il> '.Yii::t('app', 'Confirm Sale'), ['class' => 'btn btn-success']);
-}else{
-    echo Html::submitButton('<il class="fa fa-shopping-cart"></il> '.Yii::t('app', 'Next'), ['class' => 'btn btn-success']);
+    echo Html::hiddenInput('confirm_sale',true, ['class' => 'form-control']);
+?>
+    <div class="row">
+    </div>
+    <div class="col-sm-6 col-md-6" align="left">
+        <a class="btn btn-danger btn-sm" href="<?=Url::toRoute(['service-ticket/saleticket','b'=>1])?>">
+            <il class="fa fa-backward"></il> <?=Yii::t('app','ກັບ​ຄືນ')?>
+        </a></div>
+    <div class="col-sm-6 col-md-6" align="right">
+        <?=Html::submitButton('<il class="fa fa-shopping-cart"></il> '.Yii::t('app', 'ຢັ້ງ​ຢືນຂາຍ​ປີ້'), ['class' => 'btn btn-success']);?>
+    </div>
+    <?php
+    }else{
+    echo Html::submitButton('<il class="fa fa-shopping-cart"></il> '.Yii::t('app', 'ຂາຍ​ປີ້'), ['class' => 'btn btn-success']);
 }
 ?>
 </div>

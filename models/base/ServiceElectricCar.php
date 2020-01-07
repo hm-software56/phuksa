@@ -14,6 +14,7 @@ use Yii;
  * @property string $name
  * @property double $price
  * @property integer $status
+ * @property string $remark
  * @property string $date
  * @property integer $user_id
  *
@@ -43,6 +44,7 @@ abstract class ServiceElectricCar extends \yii\db\ActiveRecord
             [['code', 'name', 'price', 'date', 'user_id'], 'required'],
             [['price'], 'number'],
             [['status', 'user_id'], 'integer'],
+            [['remark'], 'string'],
             [['date'], 'safe'],
             [['code', 'name'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\User::className(), 'targetAttribute' => ['user_id' => 'id']]
@@ -60,6 +62,7 @@ abstract class ServiceElectricCar extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'price' => Yii::t('app', 'Price'),
             'status' => Yii::t('app', 'Status'),
+            'remark' => Yii::t('app', 'Remark'),
             'date' => Yii::t('app', 'Date'),
             'user_id' => Yii::t('app', 'User ID'),
         ];

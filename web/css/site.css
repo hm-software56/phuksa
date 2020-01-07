@@ -21,13 +21,21 @@ body {
     padding: 0 0 60px;
 }
 
+body .container.body .right_col {
+    background: #ffffff !important;
+}
+
 .wrap>.container {
     padding: 10px 15px 20px;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
 }
 
 #pdd {
     padding: 0px 0px 0px !important;
+}
+
+.top_nav .navbar-right {
+    width: 30% !important;
 }
 
 .footer {
@@ -194,4 +202,10 @@ legend.scheduler-border {
     width: auto;
     padding: 0 10px;
     border-bottom: none;
+}
+
+@media print {
+    #printPageButton {
+        display: none;
+    }
 }

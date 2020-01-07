@@ -21,7 +21,6 @@ use Yii;
  *
  * @property \app\models\ServiceTicket $serviceTicket
  * @property \app\models\User $user
- * @property \app\models\OrderTicketHasCar $orderTicketHasCar
  * @property string $aliasModel
  */
 abstract class OrderTicket extends \yii\db\ActiveRecord
@@ -99,14 +98,6 @@ abstract class OrderTicket extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(\app\models\User::className(), ['id' => 'user_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderTicketHasCar()
-    {
-        return $this->hasOne(\app\models\OrderTicketHasCar::className(), ['order_ticket_id' => 'id']);
     }
 
 

@@ -43,29 +43,18 @@ AppAsset::register($this);
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                        <a href="/" class="site_title"><img src="<?=Yii::$app->request->baseUrl?>/images/logo.jpg"
+                                class="img-circle" width="60" />
+                            <span><?=Yii::t('app','ສວນ​ພືກ​ສາ')?></span></a>
                     </div>
                     <div class="clearfix"></div>
 
-                    <!-- menu prile quick info -->
-                    <div class="profile">
-                        <div class="profile_pic">
-                            <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
-                        </div>
-                        <div class="profile_info">
-                            <span>Welcome,</span>
-                            <h2>John Doe</h2>
-                        </div>
-                    </div>
-                    <!-- /menu prile quick info -->
-
                     <br />
-
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
-                            <h3>General</h3>
+                            <hr />
                             <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [
@@ -130,6 +119,26 @@ AppAsset::register($this);
                         <div class="nav toggle">
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="">
+                                <a href="<?=Url::toRoute(['service-ticket/saleticket'])?>">
+                                    <span class=" fa fa-cart-arrow-down"></span>
+                                    <?=Yii::t('app','ຂາຍ​ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ')?>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="<?=Url::toRoute([''])?>">
+                                    <span class=" fa fa-shopping-cart"></span>
+                                    <?=Yii::t('app','ຂາຍ​ປີ້​ລົດ​ໄຟ​ຟ້າ ແລະ ລົດ​ຖີບ')?>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="<?=Url::toRoute([''])?>">
+                                    <span class=" fa fa-shopping-bag"></span>
+                                    <?=Yii::t('app','ຂາຍ​ອາ​ຫານ ແລະ ເຄື່ອງ​ດື່ມ')?>
+                                </a>
+                            </li>
+                        </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
@@ -196,7 +205,7 @@ AppAsset::register($this);
             </div>
             <!-- /page content -->
             <!-- footer content -->
-            <footer>
+            <!--<footer>
                 <div class="pull-right">
                     Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com" rel="nofollow"
                         target="_blank">Colorlib</a><br />
@@ -204,7 +213,7 @@ AppAsset::register($this);
                         target="_blank">Yiister</a>
                 </div>
                 <div class="clearfix"></div>
-            </footer>
+            </footer> -->
             <!-- /footer content -->
         </div>
 

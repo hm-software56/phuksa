@@ -11,7 +11,9 @@ $this->title = 'My Yii Application';
             <div class="col-md-4">
                 <div id="titlebg"><span class="fa fa-ticket"></span> <?=Yii::t('app','Sale Ticket')?></div>
                 <div class="gallery">
-                    <img src="<?=Yii::$app->request->baseUrl?>/images/tk.png" class="img-circle">
+                    <a href="<?=Url::toRoute(['service-ticket/saleticket'])?>">
+                        <img src="<?=Yii::$app->request->baseUrl?>/images/tk.png" class="img-circle">
+                    </a>
                 </div>
             </div>
             <div class="col-md-4">

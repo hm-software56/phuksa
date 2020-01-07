@@ -31,4 +31,16 @@ class OrderElectricCar extends BaseOrderElectricCar
             ]
         );
     }
+
+    public function Getordercode()
+    {
+        $model =OrderElectricCar::find()->orderBy('id DESC')->one();
+        if (!empty($model)) {
+            $number = (int) $model->order_code + 1;
+            $sys_number= sprintf('%05d', $number);
+        } else {
+            $sys_number  = sprintf('%05d', 1);
+        }
+        return $sys_number;
+    }
 }
