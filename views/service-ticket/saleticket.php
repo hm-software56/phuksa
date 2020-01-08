@@ -7,14 +7,13 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\ServiceTicket */
 
-$this->title = Yii::t('app', 'Sale Tickets');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ticket'), 'url' => ['index']];
+$this->title = Yii::t('app', 'ຂາຍ​​ປີ້​');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $form = ActiveForm::begin(['action' =>isset($_GET['b'])?['service-ticket/saleticket']:""]); ?>
 <fieldset class="scheduler-border">
-    <legend class="scheduler-border"><?=Yii::t('app','Ticket')?></legend>
+    <legend class="scheduler-border"><?=Yii::t('app','ຂາຍ​​ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ')?></legend>
     <?php
         if(count($error)>0 && $error[0]!="Yes")
         {
@@ -27,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
 foreach($model as $model)
 {
-    $name=$model->name." ". Yii::t("app",'price:').number_format($model->price,2)." ".Yii::t("app",'kip')
+    $name=$model->name." ". Yii::t("app",'​ລາ​ຄາ:').number_format($model->price,2)." ".Yii::t("app",'​ກີບ')
     ?>
 
     <div class="col-md-6">
@@ -38,7 +37,7 @@ foreach($model as $model)
                     name="service_ticket_id_<?=$model->id?>" value="<?=$model->id?>"><?=$name?>
             </label>
         </div>
-        <label class="control-label"><?=Yii::t('app','Total')." ".$model->name?></label>
+        <label class="control-label"><?=Yii::t('app','​ລວມ')." ".$model->name?></label>
         <input type="text" <?=(count($error)==0)?'disabled':''?> id="quantity_<?=$model->id?>" class="form-control"
             name="quantity_<?=$model->id?>" value="<?=Yii::$app->session['sale']['quantity_'.$model->id.'']?>" />
     </div>
@@ -47,7 +46,7 @@ foreach($model as $model)
 ?>
 </fieldset>
 <fieldset class="scheduler-border">
-    <legend class="scheduler-border"><?=Yii::t('app','Ticket Electric Car')?></legend>
+    <legend class="scheduler-border"><?=Yii::t('app','ຂາຍ​ປີ້​ນໍ​າ​ໃຊ້​ພາ​ຫ​ະ​ນະ')?></legend>
     <?php
         if(count($error_car)>0 && $error_car[0]!="Yes")
         {
@@ -60,7 +59,7 @@ foreach($model as $model)
     <?php
 foreach($model_car as $model_car)
 {
-    $name=$model_car->name." ". Yii::t("app",'price:').number_format($model_car->price,2)." ".Yii::t("app",'kip')
+    $name=$model_car->name." ". Yii::t("app",'ລາ​ຄາ:').number_format($model_car->price,2)." ".Yii::t("app",'​ກີບ')
     ?>
     <div class="col-md-6">
         <div class="checkbox">
@@ -70,7 +69,7 @@ foreach($model_car as $model_car)
                     name="service_electric_car_id_<?=$model_car->id?>" value="<?=$model_car->id?>"><?=$name?>
             </label>
         </div>
-        <label class="control-label"><?=Yii::t('app','Total')." ".$model_car->name?></label>
+        <label class="control-label"><?=Yii::t('app','​ລວມ')." ".$model_car->name?></label>
         <input type="text" <?=(count($error)==0)?'disabled':''?> id="quantity_car_<?=$model_car->id?>"
             class="form-control" name="quantity_car_<?=$model_car->id?>"
             value="<?=Yii::$app->session['sale']['quantity_car_'.$model_car->id.'']?>" />
@@ -82,7 +81,7 @@ foreach($model_car as $model_car)
 <?php 
 if(Yii::$app->session['total_amount'])
 {
-echo "<div align='right' style='color:red'><b>".Yii::t('app','All Total Amount').": ". number_format(Yii::$app->session['total_amount'],2)." ກີບ</br></div>";
+echo "<div align='right' style='color:red'><b>".Yii::t('app','​ລວມຈຳ​ນວນ​ເງີນ​ທັງ​ໝົດ').": ". number_format(Yii::$app->session['total_amount'],2)." ".Yii::t("app",'​ກີບ')."</br></div>";
 }
 
 ?>

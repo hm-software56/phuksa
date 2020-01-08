@@ -20,6 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropDownList([1=>'Active',0=>'Inactive'],['prompt'=>'']);?>
 
+    <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

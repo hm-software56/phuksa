@@ -59,25 +59,25 @@ AppAsset::register($this);
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
-                                    ["label" => "Manage Home", "url" =>Url::toRoute(['home/index']), "icon" => "home"],
-                                    ["label" => "Manage Menu", "url" => Url::toRoute(['menu/index']), "icon" => "files-o"],
-                                    ["label" => "Manage Content", "url" =>  Url::toRoute(['content/index']), "icon" => "list"],
+                                    ["label" => "ບໍ​ລິ​ຫານ ​ຂໍ້​ມູນ​ໜ້າຫຼັກ", "url" =>Url::toRoute(['home/index']), "icon" => "home"],
+                                    ["label" => "ບໍ​ລິ​ຫານ ​ເມ​ນູ", "url" => Url::toRoute(['menu/index']), "icon" => "files-o"],
+                                    ["label" => "ບໍ​ລິ​ຫານ ເນື້ອ​ໃນ​ເມ​​ນູ", "url" =>  Url::toRoute(['content/index']), "icon" => "list"],
                                     
                                     [
-                                        "label" => Yii::t('app','Setting'),
+                                        "label" => Yii::t('app','​ຕັ້ງ​ຄ່າ​ລະ​ບົບ'),
                                         "url" => "#",
                                         "icon" => "table",
                                         "items" => [
                                             [
-                                                "label" =>Yii::t('app','Manage User'),
+                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ຜູ້​ໃ້​ລະ​ບົບ'),
                                                 "url" =>Url::toRoute(['user/index']),
                                             ],
                                             [
-                                                "label" =>Yii::t('app','Manage Ticket'),
+                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ'),
                                                 "url" =>Url::toRoute(['service-ticket/index']),
                                             ],
                                             [
-                                                "label" =>Yii::t('app','Manage Electric Car'),
+                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ປີ້​​ນຳ​ໃຊ້​ພາ​ຫະ​ນະ'),
                                                 "url" =>Url::toRoute(['service-electric-car/index']),
                                             ],
                                             
@@ -127,9 +127,9 @@ AppAsset::register($this);
                                 </a>
                             </li>
                             <li class="">
-                                <a href="<?=Url::toRoute([''])?>">
+                                <a href="<?=Url::toRoute(['service-electric-car/saleticketcar'])?>">
                                     <span class=" fa fa-shopping-cart"></span>
-                                    <?=Yii::t('app','ຂາຍ​ປີ້​ລົດ​ໄຟ​ຟ້າ ແລະ ລົດ​ຖີບ')?>
+                                    <?=Yii::t('app','ຂາຍ​ປີ້​ລົດ​ນຳ​ໃຊ້​ທ່ຽວ​ສວນ​ພືກ​ສາ')?>
                                 </a>
                             </li>
                             <li class="">

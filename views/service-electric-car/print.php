@@ -16,7 +16,7 @@ function printDiv(divName) {
         <div class="col-sm-6 col-md-6" id="printableArea">
             <div class="row" id="printPageButton">
                 <div class="col-sm-6 col-md-6">
-                    <a class="btn btn-primary btn-sm" href="<?=Url::toRoute('service-ticket/saleticket')?>">
+                    <a class="btn btn-primary btn-sm" href="<?=Url::toRoute('service-electric-car/saleticketcar')?>">
                         <il class="fa fa-backward"></il> <?=Yii::t('app','ຂາຍ​ປິິ້​ໃໝ່')?>
                     </a>
                 </div>
@@ -26,52 +26,6 @@ function printDiv(divName) {
                     </a>
                 </div>
             </div>
-            <?php
-foreach($model as $model)
-{
-    if(isset($dataprint['service_ticket_id_'.$model->id.'']))
-    {
-            ?>
-            <table class="table table-striped">
-                <tbody>
-                    <tr>
-                        <td width="50">
-                            <img src="<?=\Yii::$app->request->BaseUrl . '/images/logo.jpg'?>" class="img-circle"
-                                width="50" />
-                        </td>
-                        <td align="centr">
-                            <div align="centr">
-                                <h2><b><?=Yii::t('app','ປີ້​ເຂົ້າ​ຊົມ​ສວນ​ພຶກ​ສາ')?></b></h2>
-                            </div>
-                        </td>
-                        <td>
-
-                            <div align="right">
-                                <?=Yii::t('app','​ລ​ະ​ຫັດ')?>:<?=$model->code?>-<?=$dataprint['order_code_'.$model->id.'']?>
-                                <br />
-                                <?=Yii::t('app','​ວັນ​ທີ່')?>:<?=date('d-m-Y')?>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <?=Yii::t('app','ຈ​ຳ​ນວນ​ຄົນ​ເຂົ້າ​ຊົນ​ສະ​ຖານ​ທີ່')?> <?=$model->name?> :
-                            <?=$dataprint['quantity_'.$model->id.'']?> <?=Yii::t('app','ຄົນ')?>
-                            <br /><br /><b>
-                                <?=Yii::t('app','ລວມຈ​ຳ​ນວນ​ເງີນ​')?>:
-                                <?=number_format($model->price*$dataprint['quantity_'.$model->id.''])?>
-                                <?=Yii::t('app','ກີບ')?>
-                            </b><br /><br />
-                            <div align="right"><?=$model->remark?></div>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-            <?php
-    }
-}
-?>
             <?php
 foreach($model_car as $model_car)
 {

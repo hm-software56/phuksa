@@ -161,7 +161,7 @@ class ServiceTicketController extends Controller
                     $ordersticket_car->service_electric_car_id=$model_carsave->id;
                     $ordersticket_car->user_id=Yii::$app->user->id;
                     $ordersticket_car->status="Paid";
-                    $ordersticket_car->order_code=$ordersticket->Getordercode();
+                    $ordersticket_car->order_code=$ordersticket_car->Getordercode();
                     if(!$ordersticket_car->save())
                     {
                         print_r($ordersticket_car->getErrors());exit;
