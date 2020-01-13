@@ -18,7 +18,7 @@ class ProductOrderSearch extends ProductOrder
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['order_code', 'status', 'order_date', 'done_date'], 'safe'],
+            [['order_code', 'details', 'order_date', 'done_date', 'status'], 'safe'],
         ];
     }
 
@@ -55,17 +55,18 @@ class ProductOrderSearch extends ProductOrder
             // $query->where('0=1');
             return $dataProvider;
         }
-
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'order_date' => $this->order_date,
-            'done_date' => $this->done_date,
+            //'order_date' => $this->order_date,
+            //'done_date' => $this->done_date,
             'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'order_code', $this->order_code])
-            ->andFilterWhere(['like', 'status', $this->status]);
+            ->andFilterWhere(['like', 'details', $this->details])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'order_date', $this->order_date]);
 
         return $dataProvider;
     }

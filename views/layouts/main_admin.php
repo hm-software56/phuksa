@@ -43,9 +43,9 @@ AppAsset::register($this);
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <!--<a href="/" class="site_title"><img src="<?=Yii::$app->request->baseUrl?>/images/logo.jpg"
+                        <a href="/" class="site_title"><img src="<?=Yii::$app->request->baseUrl?>/images/logo.jpg"
                                 class="img-circle" width="60" />
-                            <span><?=Yii::t('app','ສວນ​ພືກ​ສາ')?></span></a>-->
+                            <span><?=Yii::t('app','ສວນ​ພືກ​ສາ')?></span></a>
                     </div>
                     <div class="clearfix"></div>
 
@@ -140,6 +140,12 @@ AppAsset::register($this);
                                 <a href="<?=Url::toRoute([''])?>">
                                     <span class=" fa fa-shopping-bag"></span>
                                     <?=Yii::t('app','ຂາຍ​ອາ​ຫານ ແລະ ເຄື່ອງ​ດື່ມ')?>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="<?=Url::toRoute(['product-order/index'])?>">
+                                    <span class=" fa fa-shopping-basket"></span>
+                                    <?=Yii::t('app','ສັ່ງ​ຊື້​ສີນ​ຄ້າເຂົ້າ')?>
                                 </a>
                             </li>
                         </ul>

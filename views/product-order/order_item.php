@@ -5,42 +5,24 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use app\models\Product;
-$opt="<option></option>";
-foreach(Product::find()->all() as $pd){
-$opt.="<option value='".$pd->id."'>".$pd->name."</option>";
-}
+use app\models\ItemOrder;
 $script = <<< JS
 $(document).ready(function()
 {
-    $('.money').simpleMoneyFormat();
-
-   
-    $(".add-row").click(function()
-    {  
-        var html  = "";
-        html+= "<tr><td><input type='checkbox' name='record[]'></td><td>"; 
-        html+= "<select name='product[]' class='js-example-basic-single form-control id_pd' >";
-        html+= "$opt";
-        html+= "</select></td>"; 
-        html+= "<td><input type='number' name='quatity[]' class='form-control' min='1'></td>"; 
-        html+= "<td><input type='text' name='price[]' class='form-control money' ></td>"; 
-        html+= "<td><input type='text' name='unit[]' class='form-control'></td></tr>"; 
- 
-        $("table tbody#emp_details").append(html);
-    });
+    
     // Find and remove selected table rows
     $(".delete-row").click(function()
     {
-        var row_count = $("#emp_details").find('input[name="record[]"]').length;
+        var row_count = $("#item_details").find('input[name="record[]"]').length;
         var checked_row_count = $('[name="record[]"]:checked').length;
  
         if(row_count != checked_row_count)
         {
-            $("#emp_details").find('input[name="record[]"]').each(function()
+            $("#item_details").find('input[name="record[]"]').each(function()
             {
                 if($(this).is(":checked"))
                 {
-                    $(this).parents("#emp_details tr").remove();
+                    $(this).parents("#item_details tr").remove();
                 }
             });
         }
@@ -68,13 +50,13 @@ $this->registerJs($script, View::POS_END);
                             cache: false,
                             url:'".Url::toRoute(['product-order/additems'])."',
                             success:function(response) {
-                                $('table tbody#emp_details').append(response);
+                                $('table tbody#item_details').append(response);
                             }
                             });return false;",
                             'class' => 'btn btn-primary btn-sm',
                             ]);?>
                     -
-                    <?= Html::submitButton("<il class='fa fa-remove'></il> ".Yii::t('app', '​​ລຶບລາຍ​ການ'), ['class' => 'delete-row btn btn-danger btn-sm']) ?>
+                    <?= Html::button("<il class='fa fa-remove'></il> ".Yii::t('app', '​​ລຶບລາຍ​ການ'), ['class' => 'delete-row btn btn-danger btn-sm']) ?>
                 </th>
             </tr>
         </thead>
@@ -82,35 +64,74 @@ $this->registerJs($script, View::POS_END);
             <tr>
                 <td colspan="2">
                     <table class="table table-bordered table-striped">
-                        <tbody id="emp_details">
+                        <tbody id="item_details">
                             <tr>
                                 <th><?=Yii::t('app','ລ​/ດ')?></th>
                                 <th><?=Yii::t('app','ສີນ​ຄ້າ')?></th>
                                 <th><?=Yii::t('app','ຈຳ​ນວນ')?></th>
-                                <th><?=Yii::t('app','ລາ​ຄາ​ຊື້')?></th>
+                                <th><?=Yii::t('app','ລາ​ຄາ​ຊື້/ກີບ')?></th>
                                 <th><?=Yii::t('app','ຫົວໜ່ວຍ')?></th>
-                                <th><?=Yii::t('app','ລວມ')?></th>
                             </tr>
+                            <?php
+                            $items=ItemOrder::find()->where(['product_order_id'=>$model->id])->all();
+                            if($items){
+                                foreach($items as $item)
+                                {
+                            ?>
                             <tr>
                                 <td><input type='checkbox' name='record[]'></td>
                                 <td>
                                     <?php
-                                    echo Select2::widget([
-                                        'name' => 'product[]',
-                                        'data' =>ArrayHelper::map(Product::find()->all(),'id','name'),
-                                        'options' => ['placeholder' => 'Select a state ...', 'class'=>'form-control id_pd'],
-                                        'pluginOptions' => [
-                                            'allowClear' => true
-                                        ],
-                                    ]);
+                                    $opt="<option></option>";
+                                    foreach(Product::find()->all() as $pd){
+                                    if($item->product_id==$pd->id)
+                                    {
+                                        $opt.="<option value='".$pd->id."' selected>".$pd->name."</option>";
+                                    }else{
+                                        $opt.="<option value='".$pd->id."'>".$pd->name."</option>";
+                                    }
+                                    }
                                 ?>
+                                    <select name='product[]' class='form-control id_pd' required>
+                                        <?=$opt?>
+                                    </select>
                                 </td>
-                                <td><input type='number' name='quatity[]' class="form-control" min='1'></td>
-                                <td><input type="text" name="price[]" class="form-control money"></td>
-                                <td><input type='text' name='unit[]' class="form-control"></td>
-                                <td></td>
+                                <td><input type='number' name='quatity[]' class="form-control" min='1'
+                                        value="<?=$item->quatity?>" required>
+                                </td>
+                                <td><input type="text" name="price[]" class="form-control" value="<?=$item->price?>"
+                                        required>
+                                </td>
+                                <td><input type='text' name='unit[]' class="form-control" value="<?=$item->unit?>"
+                                        required></td>
 
                             </tr>
+                            <?php
+                                }
+                            }else{
+                                ?>
+                            <tr>
+                                <td><input type='checkbox' name='record[]'></td>
+                                <td>
+                                    <?php
+                                    $opt="<option></option>";
+                                    foreach(Product::find()->all() as $pd){
+                                    $opt.="<option value='".$pd->id."'>".$pd->name."</option>";
+                                    }
+                                ?>
+                                    <select name='product[]' class='form-control id_pd' required>
+                                        <?=$opt?>
+                                    </select>
+                                </td>
+                                <td><input type='number' name='quatity[]' class="form-control" min='1' required></td>
+                                <td><input type="text" name="price[]" class="form-control money" required></td>
+                                <td><input type='text' name='unit[]' class="form-control" required></td>
+
+
+                            </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </td>

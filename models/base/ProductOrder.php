@@ -32,6 +32,7 @@ abstract class ProductOrder extends \yii\db\ActiveRecord
     const STATUS_DRAFT = 'Draft';
     const STATUS_ORDER = 'Order';
     const STATUS_DONE = 'Done';
+    const STATUS_CANCLE = 'Cancle';
     var $enum_labels = false;
     /**
      * @inheritdoc
@@ -47,17 +48,17 @@ abstract class ProductOrder extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_code', 'details', 'order_date', 'user_id'], 'required'],
+            [['order_code', 'details', 'order_date', 'status', 'user_id'], 'required'],
             [['details', 'status'], 'string'],
             [['order_date', 'done_date'], 'safe'],
             [['user_id'], 'integer'],
             [['order_code'], 'string', 'max' => 45],
-            [['status'], 'unique'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\User::className(), 'targetAttribute' => ['user_id' => 'id']],
             ['status', 'in', 'range' => [
                     self::STATUS_DRAFT,
                     self::STATUS_ORDER,
                     self::STATUS_DONE,
+                    self::STATUS_CANCLE,
                 ]
             ]
         ];
@@ -121,6 +122,7 @@ abstract class ProductOrder extends \yii\db\ActiveRecord
             self::STATUS_DRAFT => Yii::t('app', 'Draft'),
             self::STATUS_ORDER => Yii::t('app', 'Order'),
             self::STATUS_DONE => Yii::t('app', 'Done'),
+            self::STATUS_CANCLE => Yii::t('app', 'Cancle'),
         ];
     }
 
