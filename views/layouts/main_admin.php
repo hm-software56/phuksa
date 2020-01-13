@@ -43,9 +43,9 @@ AppAsset::register($this);
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/" class="site_title"><img src="<?=Yii::$app->request->baseUrl?>/images/logo.jpg"
+                        <!--<a href="/" class="site_title"><img src="<?=Yii::$app->request->baseUrl?>/images/logo.jpg"
                                 class="img-circle" width="60" />
-                            <span><?=Yii::t('app','ສວນ​ພືກ​ສາ')?></span></a>
+                            <span><?=Yii::t('app','ສວນ​ພືກ​ສາ')?></span></a>-->
                     </div>
                     <div class="clearfix"></div>
 
@@ -79,6 +79,10 @@ AppAsset::register($this);
                                             [
                                                 "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ປີ້​​ນຳ​ໃຊ້​ພາ​ຫະ​ນະ'),
                                                 "url" =>Url::toRoute(['service-electric-car/index']),
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ສີນ​ຄ້າ'),
+                                                "url" =>Url::toRoute(['product/index']),
                                             ],
                                             
                                         ],

@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/simple.money.format.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
