@@ -28,7 +28,7 @@ foreach ($model as $model) {
                   url  : 'index.php?r=service-food-beverage/order&id=" . $model->id . "',
                   'beforeSend': function(){
                         $('#send').remove();
-                        $('#load').html('<img src=images/loading.gif width=40 />');
+                        $('#load').html('<img src=images/loading.gif width=50 />');
                     },
                   success  : function(response) {
                   $('#output').html(response);
