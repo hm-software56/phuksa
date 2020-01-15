@@ -84,6 +84,10 @@ AppAsset::register($this);
                                                 "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ສີນ​ຄ້າ'),
                                                 "url" =>Url::toRoute(['product/index']),
                                             ],
+                                            [
+                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ອາ​ຫານ ແລະ ​ເຄື່ອງ​ດື່ມ'),
+                                                "url" =>Url::toRoute(['service-food-beverage/index']),
+                                            ],
                                             
                                         ],
                                     ],
@@ -137,7 +141,7 @@ AppAsset::register($this);
                                 </a>
                             </li>
                             <li class="">
-                                <a href="<?=Url::toRoute([''])?>">
+                                <a href="<?=Url::toRoute(['service-food-beverage/sale'])?>">
                                     <span class=" fa fa-shopping-bag"></span>
                                     <?=Yii::t('app','ຂາຍ​ອາ​ຫານ ແລະ ເຄື່ອງ​ດື່ມ')?>
                                 </a>

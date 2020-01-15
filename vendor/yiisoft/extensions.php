@@ -376,4 +376,13 @@ return array (
       '@kartik/money' => $vendorDir . '/kartik-v/yii2-money/src',
     ),
   ),
+  'loveorigami/yii2-slimscroll-widget' => 
+  array (
+    'name' => 'loveorigami/yii2-slimscroll-widget',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@lo/widgets' => $vendorDir . '/loveorigami/yii2-slimscroll-widget',
+    ),
+  ),
 );
