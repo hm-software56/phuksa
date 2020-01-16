@@ -133,8 +133,21 @@ class ServiceFoodBeverageController extends Controller
 
     public function actionSale()
     {
+      //  Yii::$app->layout="main_pos";
         $model=ServiceFoodBeverage::find()->all();
         return $this->render('sale',['model'=>$model]);
+    }
+
+    public function actionSearchsale($key)
+    {
+        if($key=="all")
+        {
+            $model=ServiceFoodBeverage::find()->all();
+        }else{
+            $model=ServiceFoodBeverage::find()->where(['type'=>$key])->all();
+        }
+        
+        return $this->renderAjax('pos_sale',['model'=>$model]);
     }
 
     public function actionOrder($id) 
