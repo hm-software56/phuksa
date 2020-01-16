@@ -139,6 +139,10 @@ class ServiceFoodBeverageController extends Controller
 
     public function actionOrder($id) 
     {
+        if($id=='next')
+        {
+            unset(Yii::$app->session['print_sale']);
+        }
         $model = ServiceFoodBeverage::find()->where(['id'=>$id])->one();
         if($model)
         {
@@ -177,11 +181,32 @@ class ServiceFoodBeverageController extends Controller
         return $this->renderAjax('order');
     }
     public function actionConfirmpay($id) {
-        if($id==1)
+        if($id==1 && !empty(Yii::$app->session['product']))
         {
             $salefood=new SaleFoodBeverage;
             $salefood->status="Paid";
             $salefood->date=date('Y-m-d H:i:s');
+            $salefood->user_id=Yii::$app->user->id;
+            $salefood->code_sale=$salefood->Getsalecode();
+            if($salefood->save())
+            {
+                foreach(Yii::$app->session['product'] as $pd_id=>$pd_qtt)
+                {
+                    $svfb=ServiceFoodBeverage::find()->where(['id'=>$pd_id])->one();
+                    $itemfood=new ItemFoodBeverage();
+                    $itemfood->name=$svfb->name;
+                    $itemfood->buy_price=$svfb->buy_price;
+                    $itemfood->sale_price=$svfb->sale_price;
+                    $itemfood->quantity=$pd_qtt;
+                    $itemfood->service_food_beverage_id=$svfb->id;
+                    $itemfood->sale_food_beverage_id=$salefood->id;
+                    $itemfood->save();
+                }
+                Yii::$app->session['print_sale']=Yii::$app->session['product'];
+                Yii::$app->session['sale_code']=$salefood->code_sale;
+                unset(Yii::$app->session['product']);
+                return $this->renderAjax('print_sale');
+            }
 
         }
         return $this->renderAjax('confirm_pay');

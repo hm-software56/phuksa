@@ -31,4 +31,15 @@ class SaleFoodBeverage extends BaseSaleFoodBeverage
             ]
         );
     }
+    public function Getsalecode()
+    {
+        $model =SaleFoodBeverage::find()->orderBy('id DESC')->one();
+        if (!empty($model)) {
+            $number = (int) $model->code_sale + 1;
+            $sys_number= sprintf('%05d', $number);
+        } else {
+            $sys_number  = sprintf('%05d', 1);
+        }
+        return $sys_number;
+    }
 }
