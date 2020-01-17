@@ -91,6 +91,19 @@ AppAsset::register($this);
                                             
                                         ],
                                     ],
+
+                                    [
+                                        "label" => Yii::t('app','​ລາຍ​ງາຍ'),
+                                        "url" => "#",
+                                        "icon" => "list",
+                                        "items" => [
+                                            [
+                                                "label" =>Yii::t('app','ລາຍ​ງານ​ການ​ຂາຍ​ປີ້​ເ​ຂົ້າ​ສວນ'),
+                                                "url" =>'#',
+                                            ],
+                                            
+                                        ],
+                                    ],
                                 ],
                             ]
                         )

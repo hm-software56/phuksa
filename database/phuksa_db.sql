@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 08/01/2020 16:45:35
+ Date: 17/01/2020 17:30:46
 */
 
 SET NAMES utf8mb4;
@@ -120,16 +120,91 @@ INSERT INTO `home` VALUES (4, 'home_20191228073757.jpg', 'ບໍ​ລິ​ກ�
 INSERT INTO `home` VALUES (5, 'home_20191228074235.jpeg', '​ບໍ​ລິການ ຕູບ', '<p>Online Automatic Text Summarization Tool - Autosummarizer is a simple tool that help to summarize large text documents extracting the most important ... Best summary tool, article summarizer, conclusion generator online</p>\r\n', 'Box', 1);
 
 -- ----------------------------
+-- Table structure for item_food_beverage
+-- ----------------------------
+DROP TABLE IF EXISTS `item_food_beverage`;
+CREATE TABLE `item_food_beverage`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `buy_price` float NOT NULL,
+  `sale_price` float NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `service_food_beverage_id` int(11) NOT NULL,
+  `sale_food_beverage_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_item_food_beverage_service_food_beverage1_idx`(`service_food_beverage_id`) USING BTREE,
+  INDEX `fk_item_food_beverage_sale_food_beverage1_idx`(`sale_food_beverage_id`) USING BTREE,
+  CONSTRAINT `fk_item_food_beverage_sale_food_beverage1` FOREIGN KEY (`sale_food_beverage_id`) REFERENCES `sale_food_beverage` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_item_food_beverage_service_food_beverage1` FOREIGN KEY (`service_food_beverage_id`) REFERENCES `service_food_beverage` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of item_food_beverage
+-- ----------------------------
+INSERT INTO `item_food_beverage` VALUES (1, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 2);
+INSERT INTO `item_food_beverage` VALUES (2, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 2);
+INSERT INTO `item_food_beverage` VALUES (3, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 2);
+INSERT INTO `item_food_beverage` VALUES (4, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 3);
+INSERT INTO `item_food_beverage` VALUES (5, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 3);
+INSERT INTO `item_food_beverage` VALUES (6, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 3);
+INSERT INTO `item_food_beverage` VALUES (7, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 4);
+INSERT INTO `item_food_beverage` VALUES (8, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 4);
+INSERT INTO `item_food_beverage` VALUES (9, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 4);
+INSERT INTO `item_food_beverage` VALUES (10, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 5);
+INSERT INTO `item_food_beverage` VALUES (11, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 5);
+INSERT INTO `item_food_beverage` VALUES (12, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 5);
+INSERT INTO `item_food_beverage` VALUES (13, 'ເຂົ້າ​ປຽກ', 8000, 12000, 1, 5, 6);
+INSERT INTO `item_food_beverage` VALUES (14, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 6);
+INSERT INTO `item_food_beverage` VALUES (15, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 2, 1, 6);
+INSERT INTO `item_food_beverage` VALUES (16, 'ເຝີກ', 10000, 15000, 1, 4, 7);
+INSERT INTO `item_food_beverage` VALUES (17, 'ເຝີກ', 10000, 15000, 1, 4, 8);
+INSERT INTO `item_food_beverage` VALUES (18, 'ເຝີກ', 10000, 15000, 1, 4, 9);
+INSERT INTO `item_food_beverage` VALUES (19, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 9);
+INSERT INTO `item_food_beverage` VALUES (20, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 9);
+INSERT INTO `item_food_beverage` VALUES (21, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 10);
+INSERT INTO `item_food_beverage` VALUES (22, 'ເຝີກ', 10000, 15000, 1, 4, 10);
+INSERT INTO `item_food_beverage` VALUES (23, 'ເຂົ້າ​ປຽກ', 8000, 12000, 1, 5, 10);
+INSERT INTO `item_food_beverage` VALUES (24, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 10);
+INSERT INTO `item_food_beverage` VALUES (25, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 10);
+INSERT INTO `item_food_beverage` VALUES (26, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 11);
+INSERT INTO `item_food_beverage` VALUES (27, 'ເຝີກ', 10000, 15000, 1, 4, 11);
+INSERT INTO `item_food_beverage` VALUES (28, 'ເຂົ້າ​ປຽກ', 8000, 12000, 1, 5, 11);
+INSERT INTO `item_food_beverage` VALUES (29, 'ເຂົ້າປຸ້ນ', 8000, 10000, 2, 3, 11);
+INSERT INTO `item_food_beverage` VALUES (30, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 2, 2, 11);
+INSERT INTO `item_food_beverage` VALUES (31, 'ນ້ຳ​ດືມ​ຫົວ​ເສືອ​ນ້ອຍ', 2000, 3000, 1, 6, 12);
+INSERT INTO `item_food_beverage` VALUES (32, 'ເຂົ້າ​ປຽກ', 8000, 12000, 1, 5, 12);
+INSERT INTO `item_food_beverage` VALUES (33, 'ເບຍ', 8000, 10000, 1, 7, 12);
+INSERT INTO `item_food_beverage` VALUES (34, 'ເຝີກ', 10000, 15000, 1, 4, 13);
+INSERT INTO `item_food_beverage` VALUES (35, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 13);
+INSERT INTO `item_food_beverage` VALUES (36, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 13);
+INSERT INTO `item_food_beverage` VALUES (37, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 13);
+INSERT INTO `item_food_beverage` VALUES (38, 'ນ້ຳ​ດືມ​ຫົວ​ເສືອ​ນ້ອຍ', 2000, 3000, 1, 6, 13);
+INSERT INTO `item_food_beverage` VALUES (39, 'ເບຍ', 8000, 10000, 1, 7, 13);
+INSERT INTO `item_food_beverage` VALUES (40, 'ເຝີກ', 10000, 15000, 1, 4, 14);
+INSERT INTO `item_food_beverage` VALUES (41, 'ເບຍ', 8000, 10000, 1, 7, 14);
+INSERT INTO `item_food_beverage` VALUES (42, 'ນ້ຳ​ດືມ​ຫົວ​ເສືອ​ນ້ອຍ', 2000, 3000, 2, 6, 14);
+INSERT INTO `item_food_beverage` VALUES (43, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 14);
+INSERT INTO `item_food_beverage` VALUES (44, 'ເຝີກ', 10000, 15000, 1, 4, 15);
+INSERT INTO `item_food_beverage` VALUES (45, 'ເຂົ້າ​ປຽກ', 8000, 12000, 1, 5, 15);
+INSERT INTO `item_food_beverage` VALUES (46, 'ນ້ຳ​ດືມ​ຫົວ​ເສືອ​ນ້ອຍ', 2000, 3000, 1, 6, 15);
+INSERT INTO `item_food_beverage` VALUES (47, 'ເຂົ້າປຸ້ນ', 8000, 10000, 2, 3, 15);
+INSERT INTO `item_food_beverage` VALUES (48, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 2, 2, 15);
+INSERT INTO `item_food_beverage` VALUES (49, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 2, 1, 15);
+INSERT INTO `item_food_beverage` VALUES (50, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 16);
+INSERT INTO `item_food_beverage` VALUES (51, 'ເຝີກ', 10000, 15000, 1, 4, 16);
+INSERT INTO `item_food_beverage` VALUES (52, 'ນ້ຳ​ດືມ​ຫົວ​ເສືອ​ນ້ອຍ', 2000, 3000, 1, 6, 16);
+INSERT INTO `item_food_beverage` VALUES (53, 'ເຂົ້າປຸ້ນ', 8000, 10000, 2, 3, 16);
+
+-- ----------------------------
 -- Table structure for item_order
 -- ----------------------------
 DROP TABLE IF EXISTS `item_order`;
 CREATE TABLE `item_order`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `price` float NULL DEFAULT NULL,
   `quatity` int(11) NOT NULL,
   `unit` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `order_date` datetime(0) NOT NULL,
-  `date_done` datetime(0) NULL DEFAULT NULL,
   `product_id` int(11) NOT NULL,
   `product_order_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
@@ -137,7 +212,17 @@ CREATE TABLE `item_order`  (
   INDEX `fk_item_order_product_order1_idx`(`product_order_id`) USING BTREE,
   CONSTRAINT `fk_item_order_product_order1` FOREIGN KEY (`product_order_id`) REFERENCES `product_order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_purchase_order_product1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of item_order
+-- ----------------------------
+INSERT INTO `item_order` VALUES (20, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 100000, 12, 'pak', 1, 3);
+INSERT INTO `item_order` VALUES (21, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 120000, 3, 'pak', 4, 3);
+INSERT INTO `item_order` VALUES (22, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 100000, 2, 'pak', 4, 3);
+INSERT INTO `item_order` VALUES (23, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 100000, 34, 'pak', 1, 3);
+INSERT INTO `item_order` VALUES (24, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 100000, 12, 'pak', 1, 1);
+INSERT INTO `item_order` VALUES (25, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 120000, 12, 'pak', 4, 1);
 
 -- ----------------------------
 -- Table structure for menu
@@ -236,28 +321,6 @@ INSERT INTO `order_electric_car` VALUES (27, '00051', 'ລົດ​ໄຟ​ຟ�
 INSERT INTO `order_electric_car` VALUES (28, '00052', 'ລົດ​ຖີບ', 3, 70000, 'Paid', '2020-01-08 08:32:04', 2, 1);
 
 -- ----------------------------
--- Table structure for order_food_beverage
--- ----------------------------
-DROP TABLE IF EXISTS `order_food_beverage`;
-CREATE TABLE `order_food_beverage`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code_order` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `buy_price` float NOT NULL,
-  `sale_price` float NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `status` enum('Pedding','Done','Paid','Cancel') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `order_date` datetime(0) NOT NULL,
-  `service_food_beverage_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `fk_order_food_beverage_service_food_beverage1_idx`(`service_food_beverage_id`) USING BTREE,
-  INDEX `fk_order_food_beverage_user1_idx`(`user_id`) USING BTREE,
-  CONSTRAINT `fk_order_food_beverage_service_food_beverage1` FOREIGN KEY (`service_food_beverage_id`) REFERENCES `service_food_beverage` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_order_food_beverage_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for order_ticket
 -- ----------------------------
 DROP TABLE IF EXISTS `order_ticket`;
@@ -332,9 +395,16 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `photo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of product
+-- ----------------------------
+INSERT INTO `product` VALUES (1, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 'home_20200111013328.jpg', 1);
+INSERT INTO `product` VALUES (4, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 'home_20200111014410.jpg', 1);
 
 -- ----------------------------
 -- Table structure for product_order
@@ -343,15 +413,56 @@ DROP TABLE IF EXISTS `product_order`;
 CREATE TABLE `product_order`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_code` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `status` enum('Draft','Order','Done') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `details` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `order_date` datetime(0) NOT NULL,
   `done_date` datetime(0) NULL DEFAULT NULL,
+  `status` enum('Draft','Order','Done','Cancle') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `status_UNIQUE`(`status`) USING BTREE,
   INDEX `fk_purchase_order_user1_idx`(`user_id`) USING BTREE,
   CONSTRAINT `fk_purchase_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of product_order
+-- ----------------------------
+INSERT INTO `product_order` VALUES (1, '00001', 'test', '2020-01-13 00:00:00', NULL, 'Done', 1);
+INSERT INTO `product_order` VALUES (3, '00003', 'www', '2020-01-13 00:00:00', NULL, 'Cancle', 1);
+
+-- ----------------------------
+-- Table structure for sale_food_beverage
+-- ----------------------------
+DROP TABLE IF EXISTS `sale_food_beverage`;
+CREATE TABLE `sale_food_beverage`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code_sale` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status` enum('Pedding','Done','Paid','Cancel') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` datetime(0) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_sale_food_beverage_user1_idx`(`user_id`) USING BTREE,
+  CONSTRAINT `fk_sale_food_beverage_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sale_food_beverage
+-- ----------------------------
+INSERT INTO `sale_food_beverage` VALUES (1, '00001', 'Paid', '2020-01-16 03:15:02', 1);
+INSERT INTO `sale_food_beverage` VALUES (2, '00002', 'Paid', '2020-01-16 03:15:41', 1);
+INSERT INTO `sale_food_beverage` VALUES (3, '00003', 'Paid', '2020-01-16 03:17:02', 1);
+INSERT INTO `sale_food_beverage` VALUES (4, '00004', 'Paid', '2020-01-16 03:17:06', 1);
+INSERT INTO `sale_food_beverage` VALUES (5, '00005', 'Paid', '2020-01-16 03:21:59', 1);
+INSERT INTO `sale_food_beverage` VALUES (6, '00006', 'Paid', '2020-01-16 03:24:57', 1);
+INSERT INTO `sale_food_beverage` VALUES (7, '00007', 'Paid', '2020-01-16 03:26:45', 1);
+INSERT INTO `sale_food_beverage` VALUES (8, '00008', 'Paid', '2020-01-16 03:27:19', 1);
+INSERT INTO `sale_food_beverage` VALUES (9, '00009', 'Paid', '2020-01-16 03:32:16', 1);
+INSERT INTO `sale_food_beverage` VALUES (10, '00010', 'Paid', '2020-01-16 03:38:44', 1);
+INSERT INTO `sale_food_beverage` VALUES (11, '00011', 'Paid', '2020-01-16 03:53:45', 1);
+INSERT INTO `sale_food_beverage` VALUES (12, '00012', 'Paid', '2020-01-16 04:18:43', 1);
+INSERT INTO `sale_food_beverage` VALUES (13, '00013', 'Paid', '2020-01-16 05:03:08', 1);
+INSERT INTO `sale_food_beverage` VALUES (14, '00014', 'Paid', '2020-01-16 06:05:25', 1);
+INSERT INTO `sale_food_beverage` VALUES (15, '00015', 'Paid', '2020-01-16 08:01:10', 1);
+INSERT INTO `sale_food_beverage` VALUES (16, '00016', 'Paid', '2020-01-17 06:45:57', 1);
 
 -- ----------------------------
 -- Table structure for service_electric_car
@@ -395,7 +506,18 @@ CREATE TABLE `service_food_beverage`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_service_food_user1_idx`(`user_id`) USING BTREE,
   CONSTRAINT `fk_service_food_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of service_food_beverage
+-- ----------------------------
+INSERT INTO `service_food_beverage` VALUES (1, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 'home_20200115064135.jpg', 1, '2020-01-15 00:00:00', 1, 'Beverage');
+INSERT INTO `service_food_beverage` VALUES (2, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 'pd_20200115064013.jpg', 1, '2020-01-15 00:00:00', 1, 'Food');
+INSERT INTO `service_food_beverage` VALUES (3, 'ເຂົ້າປຸ້ນ', 8000, 10000, 'pd_20200115064248.jpg', 1, '2020-01-15 00:00:00', 1, 'Food');
+INSERT INTO `service_food_beverage` VALUES (4, 'ເຝີກ', 10000, 15000, 'pd_20200115102050.jpg', 1, '2020-01-15 00:00:00', 1, 'Food');
+INSERT INTO `service_food_beverage` VALUES (5, 'ເຂົ້າ​ປຽກ', 8000, 12000, 'pd_20200115102125.jpg', 1, '2020-01-15 00:00:00', 1, 'Food');
+INSERT INTO `service_food_beverage` VALUES (6, 'ນ້ຳ​ດືມ​ຫົວ​ເສືອ​ນ້ອຍ', 2000, 3000, 'pd_20200116041718.gif', 1, '2020-01-16 00:00:00', 1, 'Beverage');
+INSERT INTO `service_food_beverage` VALUES (7, 'ເບຍ', 8000, 10000, 'pd_20200116041812.png', 1, '2020-01-16 00:00:00', 1, 'Beverage');
 
 -- ----------------------------
 -- Table structure for service_ticket

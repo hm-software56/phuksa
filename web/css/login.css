@@ -50,6 +50,7 @@ h2.active {
 
 input[type=button],
 input[type=submit],
+button[type=submit],
 input[type=reset] {
     background-color: #56baed;
     border: none;

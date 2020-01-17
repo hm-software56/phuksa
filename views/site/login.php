@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->passwordInput(['class'=>'fadeIn third','id'=>"password",'placeholder'=>Yii::t('app','Password')])->label(false) ?>
         </div>
         <div id="formFooter">
-            <input type="submit" class="fadeIn fourth" value="<?=Yii::t('app','ເຂົ້າ​ລະ​ບົບ')?>">
+          <?= Html::submitButton(Yii::t('app', 'ເຂົ້າ​ລະ​ບົບ'), ['class' => 'btn btn-success']) ?>
         </div>
     <?php ActiveForm::end(); ?>
   </div>
