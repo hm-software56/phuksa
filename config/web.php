@@ -43,12 +43,11 @@ $config = [
         ],
         'i18n' => [
             'translations' => [
-                '*' => [
+                'yii' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages', // if advanced application, set @frontend/messages
                     'sourceLanguage' => 'en',
                     'fileMap' => [
-                        //'main' => 'main.php',
                     ],
                 ],
             ],
@@ -98,7 +97,7 @@ $config = [
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
+  //  $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.

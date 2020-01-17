@@ -78,7 +78,7 @@ return [
     'just now' => '',
     'the input value' => '',
     '{attribute} "{value}" has already been taken.' => '',
-    '{attribute} cannot be blank.' => '',
+    '{attribute} cannot be blank.' => '{attribute} ຕ້ອງມີຂໍ້​ມູນ.',
     '{attribute} contains wrong subnet mask.' => '',
     '{attribute} is invalid.' => '',
     '{attribute} is not a valid URL.' => '',
@@ -140,4 +140,5 @@ return [
     '{nFormatted} {n, plural, =1{tebibyte} other{tebibytes}}' => '',
     '{nFormatted} {n, plural, =1{terabyte} other{terabytes}}' => '',
     '{percent}% Complete' => '',
+    'ຂາຍ' => '',
 ];

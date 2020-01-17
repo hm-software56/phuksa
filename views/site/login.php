@@ -6,41 +6,32 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
-$this->title = 'Login';
+echo Yii::$app->getUrlManager()->getBaseUrl();
+$this->registerCssFile(Yii::$app->getUrlManager()->getBaseUrl()."/css/login.css");
+$this->title =Yii::t('app','ເຂົ້າ​ລະ​ບົບ');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-<div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
-    <div class="row">
-        <div class="col-lg-6 col-md-8 mx-auto">
-
-            <!-- form card login -->
-            <div class="card rounded shadow shadow-sm">
-                <div class="card-header">
-                    <h3 class="mb-0">Login</h3>
-                </div>
-                <div class="card-body">
-                    <?php $form = ActiveForm::begin([
-                            'id' => 'login-form',
-                        ]); ?>
-                    <div class="form-group">
-                        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-                    </div>
-                    <div class="form-group">
-                        <?= $form->field($model, 'password')->passwordInput() ?>
-                    </div>
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                    <?php ActiveForm::end(); ?>
-                </div>
-                <!--/card-block-->
-            </div>
-            <!-- /form card login -->
-
-        </div>
-
-
+    <!-- Icon -->
+    <div class="fadeIn first">
+    <img src="<?=Yii::$app->request->baseUrl?>/images/logo.jpg" class="img-circle" width="60" />
     </div>
-    <!--/row-->
 
+    <!-- Login Form -->
+    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+        <div class="form-group">
+            <?= $form->field($model, 'username')->textInput(['id'=>"login",'class'=>'fadeIn second','placeholder'=>Yii::t('app','Username')])->label(false) ?>
+        </div>
+        <div class="form-group">
+            <?= $form->field($model, 'password')->passwordInput(['class'=>'fadeIn third','id'=>"password",'placeholder'=>Yii::t('app','Password')])->label(false) ?>
+        </div>
+        <div id="formFooter">
+            <input type="submit" class="fadeIn fourth" value="<?=Yii::t('app','ເຂົ້າ​ລະ​ບົບ')?>">
+        </div>
+    <?php ActiveForm::end(); ?>
+  </div>
 </div>
+

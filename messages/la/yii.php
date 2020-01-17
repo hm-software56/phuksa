@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    '{attribute} cannot be blank.' => '{attribute} ຕ້ອງມີຂໍ້​ມູນ.',
     ' and ' => '',
     '"{attribute}" does not support operator "{operator}".' => '',
     '(not set)' => '',
@@ -28,7 +29,7 @@ return [
     'Delete' => '',
     'Error' => '',
     'File upload failed.' => '',
-    'Home' => '',
+    'Home' => 'ໜ້າຫຼັກ',
     'Invalid data received for parameter "{param}".' => '',
     'Login Required' => '',
     'Missing required arguments: {params}' => '',
@@ -78,7 +79,6 @@ return [
     'just now' => '',
     'the input value' => '',
     '{attribute} "{value}" has already been taken.' => '',
-    '{attribute} cannot be blank.' => '{attribute} ຕ້ອງມ​ີ​ຂໍ້​ມູນ.',
     '{attribute} contains wrong subnet mask.' => '',
     '{attribute} is invalid.' => '',
     '{attribute} is not a valid URL.' => '',
@@ -140,4 +140,5 @@ return [
     '{nFormatted} {n, plural, =1{tebibyte} other{tebibytes}}' => '',
     '{nFormatted} {n, plural, =1{terabyte} other{terabytes}}' => '',
     '{percent}% Complete' => '',
+    'ຂາຍ' => '',
 ];
