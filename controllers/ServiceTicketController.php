@@ -240,6 +240,11 @@ class ServiceTicketController extends Controller
         $model_car=ServiceElectricCar::find()->all();
         return $this->render('print',['model'=>$model,'model_car'=>$model_car,'dataprint'=>Yii::$app->session['print']]);
     }
+
+    public function actionReport()
+    {
+        return $this->render('report');
+    }
     /**
      * Deletes an existing ServiceTicket model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

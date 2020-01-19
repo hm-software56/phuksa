@@ -385,4 +385,22 @@ return array (
       '@lo/widgets' => $vendorDir . '/loveorigami/yii2-slimscroll-widget',
     ),
   ),
+  'miloschuman/yii2-highcharts-widget' => 
+  array (
+    'name' => 'miloschuman/yii2-highcharts-widget',
+    'version' => '7.1.3.0',
+    'alias' => 
+    array (
+      '@miloschuman/highcharts' => $vendorDir . '/miloschuman/yii2-highcharts-widget/src',
+    ),
+  ),
+  'bsadnu/yii2-googlecharts' => 
+  array (
+    'name' => 'bsadnu/yii2-googlecharts',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@bsadnu/googlecharts' => $vendorDir . '/bsadnu/yii2-googlecharts',
+    ),
+  ),
 );

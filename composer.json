@@ -30,7 +30,9 @@
         "yiisoft/yii2-jui": "^2.0",
         "kartik-v/yii2-widget-select2": "*",
         "kartik-v/yii2-money": "*",
-        "loveorigami/yii2-slimscroll-widget": "*"
+        "loveorigami/yii2-slimscroll-widget": "*",
+        "miloschuman/yii2-highcharts-widget": "^7.1",
+        "bsadnu/yii2-googlecharts": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

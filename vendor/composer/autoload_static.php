@@ -55,6 +55,7 @@ class ComposerStaticInitf00ebc13b8a1a40faf7fd72146f77e77
         ),
         'm' => 
         array (
+            'miloschuman\\highcharts\\' => 23,
             'mikehaertl\\shellcommand\\' => 24,
             'mihaildev\\elfinder\\' => 19,
             'mihaildev\\ckeditor\\' => 19,
@@ -102,6 +103,10 @@ class ComposerStaticInitf00ebc13b8a1a40faf7fd72146f77e77
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
+        ),
+        'b' => 
+        array (
+            'bsadnu\\googlecharts\\' => 20,
         ),
         '\\' => 
         array (
@@ -240,6 +245,10 @@ class ComposerStaticInitf00ebc13b8a1a40faf7fd72146f77e77
         'pheme\\settings\\' => 
         array (
             0 => __DIR__ . '/..' . '/pheme/yii2-settings',
+        ),
+        'miloschuman\\highcharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/miloschuman/yii2-highcharts-widget/src',
         ),
         'mikehaertl\\shellcommand\\' => 
         array (
@@ -380,6 +389,10 @@ class ComposerStaticInitf00ebc13b8a1a40faf7fd72146f77e77
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'bsadnu\\googlecharts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bsadnu/yii2-googlecharts',
         ),
         '\\pheme\\grid\\' => 
         array (
