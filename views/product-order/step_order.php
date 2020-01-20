@@ -75,4 +75,22 @@ if($model->status=="Done")
             <div class="md-step-bar-right"></div>
         </a>
     </div>
+    <div class="md-step">
+        <a href="#" onclick="printDiv('print_order')">
+            <div class="md-step-circle" style="background-color:red !important"><span class="fa fa-print"></span></div>
+            <div class="md-step-title" style="color:black !important"><?=Yii::t('app', 'ພີມ​ໃບ​ສັ່ງ​ຊື້')?></div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </a>
+    </div>
 </div>
+<script>
+function printDiv(divName) {
+    document.getElementById("show_logo").style.display = "block";
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+</script>

@@ -91,9 +91,9 @@ class ProductOrderController extends Controller
                     print_r($item->getErrors());
                 }else{
                     Yii::$app->session->setFlash('yes',Yii::t('app','ບັນ​ທຶກ​​ສັ່ງ​ຊື້​ສີນ​ຄ້າ​ສຳ​ເລັດ!.'));
-                    return $this->redirect(['view', 'id' => $model->id]);
                 }
             }
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [

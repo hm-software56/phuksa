@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\OrderTicket;
 use app\models\ServiceElectricCar;
 use app\models\OrderElectricCar;
-
+use app\models\ReportInTicket;
 /**
  * ServiceTicketController implements the CRUD actions for ServiceTicket model.
  */
@@ -241,9 +241,24 @@ class ServiceTicketController extends Controller
         return $this->render('print',['model'=>$model,'model_car'=>$model_car,'dataprint'=>Yii::$app->session['print']]);
     }
 
-    public function actionReport()
+    public function actionReport($date_start=null,$date_end=null,$type=null)
     {
-        return $this->render('report');
+        if(empty($date_start) || empty($date_end))
+        {
+            $date_start=date('Y-m-d 00:00:00');
+            $date_end=date('Y-m-d 23:59:00');
+        }else{
+            $date_start=date('Y-m-d 00:00:00',strtotime($date_start));
+            $date_end=date('Y-m-d 23:59:00', strtotime($date_end));
+        }
+        if(!empty($type))
+        {
+            $model=OrderTicket::find()->where('service_ticket_id='.$type.' and (order_date>"'.$date_start.'" and order_date<"'.$date_end.'")')->all();
+        }else{
+            $model=OrderTicket::find()->where('order_date>"'.$date_start.'" and order_date<"'.$date_end.'"')->all();
+        }
+       $service_ticket=ServiceTicket::find()->all();
+        return $this->render('report',['model'=>$model,'service_ticket'=>$service_ticket]);
     }
     /**
      * Deletes an existing ServiceTicket model.
