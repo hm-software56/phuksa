@@ -99,7 +99,7 @@ AppAsset::register($this);
                                         "items" => [
                                             [
                                                 "label" =>Yii::t('app','ລາຍ​ງານ​ການ​ຂາຍ​ປີ້​ເ​ຂົ້າ​ສວນ'),
-                                                "url" =>'#',
+                                                "url" =>Url::toRoute(['service-ticket/report','rt'=>'date']),
                                             ],
                                             
                                         ],

@@ -12,6 +12,7 @@ use app\models\OrderTicket;
 use app\models\ServiceElectricCar;
 use app\models\OrderElectricCar;
 use app\models\ReportInTicket;
+use yii\helpers\Url;
 /**
  * ServiceTicketController implements the CRUD actions for ServiceTicket model.
  */
@@ -243,6 +244,8 @@ class ServiceTicketController extends Controller
 
     public function actionReport($date_start=null,$date_end=null,$type=null)
     {
+        Yii::$app->session['report_url']=Url::toRoute(['service-ticket/report','rt'=>'date']);
+
         if(empty($date_start) || empty($date_end))
         {
             $date_start=date('Y-m-d 00:00:00');
@@ -259,6 +262,16 @@ class ServiceTicketController extends Controller
         }
        $service_ticket=ServiceTicket::find()->all();
         return $this->render('report',['model'=>$model,'service_ticket'=>$service_ticket]);
+    }
+    public function actionReportbymonth()
+    {
+        Yii::$app->session['report_url']=Url::toRoute(['service-ticket/reportbymonth','rt'=>'month']);
+        return $this->render('report');
+    }
+    public function actionReportbyyear()
+    {
+        Yii::$app->session['report_url']=Url::toRoute(['service-ticket/reportbyyear','rt'=>'year']);
+        return $this->render('report');
     }
     /**
      * Deletes an existing ServiceTicket model.
