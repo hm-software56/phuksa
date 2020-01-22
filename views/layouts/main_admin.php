@@ -99,7 +99,15 @@ AppAsset::register($this);
                                         "items" => [
                                             [
                                                 "label" =>Yii::t('app','ລາຍ​ງານ​ການ​ຂາຍ​ປີ້​ເ​ຂົ້າ​ສວນ'),
-                                                "url" =>Url::toRoute(['service-ticket/report','rt'=>'date']),
+                                                "url" =>Url::toRoute(['report/report','rt'=>'date']),
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ລາຍ​ງານ​ການ​ຂາຍ​ປີ້​ລົດ​ຳ​ໃຊ້​ທ່ຽວ​ສວນ'),
+                                                "url" =>Url::toRoute(['report/reportcar','rt'=>'date']),
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ລາຍ​ງານ​ການ​ຂາຍອາ​ຫານ ​ແລະ​ ເຄື່ອງ​ດີ່ມ'),
+                                                "url" =>Url::toRoute(['report/reportsfb','rt'=>'date']),
                                             ],
                                             
                                         ],

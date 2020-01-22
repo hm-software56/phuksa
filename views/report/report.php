@@ -9,17 +9,17 @@ $this->params['breadcrumbs'][] = $this->title;
 		<ul class="breadcrumb">
 			<li>   
 			<?php
-				echo yii\helpers\Html::a('<span class="glyphicon glyphicon-th-large "></span> '.Yii::t('app','ລາຍ​ງານ​ຕ​າມ​ວັນ​ທີ່'),Url::toRoute(['service-ticket/report','rt'=>'date']));
+				echo yii\helpers\Html::a('<span class="glyphicon glyphicon-th-large "></span> '.Yii::t('app','ລາຍ​ງານ​ຕ​າມ​ວັນ​ທີ່'),Url::toRoute(['report/report','rt'=>'date']));
 			?> 
 			</li>
 			<li>
 				<?php
-					echo yii\helpers\Html::a('<span class="fa fa-cutlery "></span> '.Yii::t('app','ລາຍ​ງານ​ຕ​າມເດືອນ'), Url::toRoute(['service-ticket/reportbymonth','rt'=>'month']));
+					echo yii\helpers\Html::a('<span class="fa fa-cutlery "></span> '.Yii::t('app','ລາຍ​ງານ​ຕ​າມເດືອນ'), Url::toRoute(['report/reportbymonth','rt'=>'month']));
 				?> 
 			</li>
 			<li>
 				<?php
-					echo yii\helpers\Html::a('<span class="fa fa-glass "></span> '.Yii::t('app','ລາຍ​ງານ​ຕ​າມປີ'), Url::toRoute(['service-ticket/reportbyyear','rt'=>'year']));
+					echo yii\helpers\Html::a('<span class="fa fa-glass "></span> '.Yii::t('app','ລາຍ​ງານ​ຕ​າມປີ'), Url::toRoute(['report/reportbyyear','rt'=>'year']));
 					?> 
 			</li>
 		</ul>

@@ -242,37 +242,7 @@ class ServiceTicketController extends Controller
         return $this->render('print',['model'=>$model,'model_car'=>$model_car,'dataprint'=>Yii::$app->session['print']]);
     }
 
-    public function actionReport($date_start=null,$date_end=null,$type=null)
-    {
-        Yii::$app->session['report_url']=Url::toRoute(['service-ticket/report','rt'=>'date']);
-
-        if(empty($date_start) || empty($date_end))
-        {
-            $date_start=date('Y-m-d 00:00:00');
-            $date_end=date('Y-m-d 23:59:00');
-        }else{
-            $date_start=date('Y-m-d 00:00:00',strtotime($date_start));
-            $date_end=date('Y-m-d 23:59:00', strtotime($date_end));
-        }
-        if(!empty($type))
-        {
-            $model=OrderTicket::find()->where('service_ticket_id='.$type.' and (order_date>"'.$date_start.'" and order_date<"'.$date_end.'")')->all();
-        }else{
-            $model=OrderTicket::find()->where('order_date>"'.$date_start.'" and order_date<"'.$date_end.'"')->all();
-        }
-       $service_ticket=ServiceTicket::find()->all();
-        return $this->render('report',['model'=>$model,'service_ticket'=>$service_ticket]);
-    }
-    public function actionReportbymonth()
-    {
-        Yii::$app->session['report_url']=Url::toRoute(['service-ticket/reportbymonth','rt'=>'month']);
-        return $this->render('report');
-    }
-    public function actionReportbyyear()
-    {
-        Yii::$app->session['report_url']=Url::toRoute(['service-ticket/reportbyyear','rt'=>'year']);
-        return $this->render('report');
-    }
+    
     /**
      * Deletes an existing ServiceTicket model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
