@@ -98,7 +98,7 @@ if(isset($_GET['type']))
 		 }
 		 if(!empty($type))
 		 {
-			$bysfb= $connection->createCommand('SELECT ifb.*, SUM(sale_price* quantity) as amount, SUM(quantity) as sum_qtt FROM `item_food_beverage` as ifb WHERE sale_food_beverage_id IN('.implode(",", $id_sal).') and service_food_beverage_id IN('.implode(",", $id_fb).')')->queryAll();
+			$bysfb= $connection->createCommand('SELECT ifb.*, SUM(sale_price* quantity) as amount, SUM(quantity) as sum_qtt FROM `item_food_beverage` as ifb WHERE sale_food_beverage_id IN('.implode(",", $id_sal).') and service_food_beverage_id IN('.implode(",", $id_fb).') GROUP BY service_food_beverage_id')->queryAll();
 		 }else{
 			$bysfb= $connection->createCommand('SELECT ifb.*, SUM(sale_price* quantity) as amount, SUM(quantity) as sum_qtt FROM `item_food_beverage` as ifb WHERE sale_food_beverage_id IN('.implode(",", $id_sal).') GROUP BY service_food_beverage_id')->queryAll();
 		 }
