@@ -11,7 +11,7 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 17/01/2020 17:30:46
+ Date: 23/01/2020 10:27:44
 */
 
 SET NAMES utf8mb4;
@@ -85,7 +85,7 @@ CREATE TABLE `content`  (
   `menu_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_content_menu1_idx`(`menu_id`) USING BTREE,
-  CONSTRAINT `fk_content_menu1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `fk_content_menu1` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -134,9 +134,9 @@ CREATE TABLE `item_food_beverage`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_item_food_beverage_service_food_beverage1_idx`(`service_food_beverage_id`) USING BTREE,
   INDEX `fk_item_food_beverage_sale_food_beverage1_idx`(`sale_food_beverage_id`) USING BTREE,
-  CONSTRAINT `fk_item_food_beverage_sale_food_beverage1` FOREIGN KEY (`sale_food_beverage_id`) REFERENCES `sale_food_beverage` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_item_food_beverage_service_food_beverage1` FOREIGN KEY (`service_food_beverage_id`) REFERENCES `service_food_beverage` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  CONSTRAINT `fk_item_food_beverage_sale_food_beverage1` FOREIGN KEY (`sale_food_beverage_id`) REFERENCES `sale_food_beverage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_item_food_beverage_service_food_beverage1` FOREIGN KEY (`service_food_beverage_id`) REFERENCES `service_food_beverage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of item_food_beverage
@@ -194,6 +194,16 @@ INSERT INTO `item_food_beverage` VALUES (50, 'ເຂົ້າໜົມໝາກ�
 INSERT INTO `item_food_beverage` VALUES (51, 'ເຝີກ', 10000, 15000, 1, 4, 16);
 INSERT INTO `item_food_beverage` VALUES (52, 'ນ້ຳ​ດືມ​ຫົວ​ເສືອ​ນ້ອຍ', 2000, 3000, 1, 6, 16);
 INSERT INTO `item_food_beverage` VALUES (53, 'ເຂົ້າປຸ້ນ', 8000, 10000, 2, 3, 16);
+INSERT INTO `item_food_beverage` VALUES (54, 'ເຂົ້າ​ປຽກ', 8000, 12000, 1, 5, 17);
+INSERT INTO `item_food_beverage` VALUES (55, 'ເຝີກ', 10000, 15000, 1, 4, 17);
+INSERT INTO `item_food_beverage` VALUES (56, 'ເຂົ້າປຸ້ນ', 8000, 10000, 2, 3, 17);
+INSERT INTO `item_food_beverage` VALUES (57, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 17);
+INSERT INTO `item_food_beverage` VALUES (58, 'ເຂົ້າປຸ້ນ', 8000, 10000, 2, 3, 18);
+INSERT INTO `item_food_beverage` VALUES (59, 'ເຂົ້າ​ປຽກ', 8000, 12000, 1, 5, 18);
+INSERT INTO `item_food_beverage` VALUES (60, 'ເຝີກ', 10000, 15000, 1, 4, 18);
+INSERT INTO `item_food_beverage` VALUES (61, 'ເຂົ້າໜົມໝາກແປບ', 10000, 12000, 1, 2, 18);
+INSERT INTO `item_food_beverage` VALUES (62, 'ເຂົ້າ​ຂາ​ໝູ', 10000, 15000, 1, 1, 18);
+INSERT INTO `item_food_beverage` VALUES (63, 'ເຂົ້າປຸ້ນ', 8000, 10000, 1, 3, 19);
 
 -- ----------------------------
 -- Table structure for item_order
@@ -210,9 +220,9 @@ CREATE TABLE `item_order`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_purchase_order_product1_idx`(`product_id`) USING BTREE,
   INDEX `fk_item_order_product_order1_idx`(`product_order_id`) USING BTREE,
-  CONSTRAINT `fk_item_order_product_order1` FOREIGN KEY (`product_order_id`) REFERENCES `product_order` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_purchase_order_product1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  CONSTRAINT `fk_item_order_product_order1` FOREIGN KEY (`product_order_id`) REFERENCES `product_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_purchase_order_product1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of item_order
@@ -223,6 +233,11 @@ INSERT INTO `item_order` VALUES (22, '​ນ້ຳ​ດື່ມຫົວ​ເ
 INSERT INTO `item_order` VALUES (23, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 100000, 34, 'pak', 1, 3);
 INSERT INTO `item_order` VALUES (24, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 100000, 12, 'pak', 1, 1);
 INSERT INTO `item_order` VALUES (25, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 120000, 12, 'pak', 4, 1);
+INSERT INTO `item_order` VALUES (33, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 100000, 12, 'pak', 1, 7);
+INSERT INTO `item_order` VALUES (34, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 100000, 13, 'pak', 4, 7);
+INSERT INTO `item_order` VALUES (35, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 100000, 11, 'pak', 4, 7);
+INSERT INTO `item_order` VALUES (36, '​ນ້ຳ​ດື່ມຫົວ​ເສືອນ້ອຍ', 100000, 12, 'pak', 1, 8);
+INSERT INTO `item_order` VALUES (37, '​ນ້ຳ​ດື່ມຫົວ​ເສືອກາງ', 100000, 12, 'pak', 4, 8);
 
 -- ----------------------------
 -- Table structure for menu
@@ -284,7 +299,7 @@ CREATE TABLE `order_electric_car`  (
   UNIQUE INDEX `id_UNIQUE`(`id`) USING BTREE,
   INDEX `fk_order_electric_car_service_electric_car1_idx`(`service_electric_car_id`) USING BTREE,
   INDEX `fk_order_electric_car_user1_idx`(`user_id`) USING BTREE,
-  CONSTRAINT `fk_order_electric_car_service_electric_car1` FOREIGN KEY (`service_electric_car_id`) REFERENCES `service_electric_car` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_order_electric_car_service_electric_car1` FOREIGN KEY (`service_electric_car_id`) REFERENCES `service_electric_car` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_order_electric_car_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -421,13 +436,15 @@ CREATE TABLE `product_order`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_purchase_order_user1_idx`(`user_id`) USING BTREE,
   CONSTRAINT `fk_purchase_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of product_order
 -- ----------------------------
 INSERT INTO `product_order` VALUES (1, '00001', 'test', '2020-01-13 00:00:00', NULL, 'Done', 1);
 INSERT INTO `product_order` VALUES (3, '00003', 'www', '2020-01-13 00:00:00', NULL, 'Cancle', 1);
+INSERT INTO `product_order` VALUES (7, '00004', 'wwew', '2020-01-19 00:00:00', NULL, 'Cancle', 1);
+INSERT INTO `product_order` VALUES (8, '00005', 'wwww', '2020-01-24 00:00:00', NULL, 'Done', 1);
 
 -- ----------------------------
 -- Table structure for sale_food_beverage
@@ -442,7 +459,7 @@ CREATE TABLE `sale_food_beverage`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_sale_food_beverage_user1_idx`(`user_id`) USING BTREE,
   CONSTRAINT `fk_sale_food_beverage_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sale_food_beverage
@@ -463,6 +480,9 @@ INSERT INTO `sale_food_beverage` VALUES (13, '00013', 'Paid', '2020-01-16 05:03:
 INSERT INTO `sale_food_beverage` VALUES (14, '00014', 'Paid', '2020-01-16 06:05:25', 1);
 INSERT INTO `sale_food_beverage` VALUES (15, '00015', 'Paid', '2020-01-16 08:01:10', 1);
 INSERT INTO `sale_food_beverage` VALUES (16, '00016', 'Paid', '2020-01-17 06:45:57', 1);
+INSERT INTO `sale_food_beverage` VALUES (17, '00017', 'Paid', '2020-01-19 04:32:16', 1);
+INSERT INTO `sale_food_beverage` VALUES (18, '00018', 'Paid', '2020-01-22 02:44:30', 1);
+INSERT INTO `sale_food_beverage` VALUES (19, '00019', 'Paid', '2020-01-22 08:17:57', 1);
 
 -- ----------------------------
 -- Table structure for service_electric_car
@@ -576,12 +596,18 @@ CREATE TABLE `user_profile`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `id_UNIQUE`(`id`) USING BTREE,
   INDEX `fk_user_profile_user_idx`(`user_id`) USING BTREE,
-  CONSTRAINT `fk_user_profile_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  CONSTRAINT `fk_user_profile_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_profile
 -- ----------------------------
 INSERT INTO `user_profile` VALUES (1, 'profile_20191226063845.jpeg', 'Daxiong', 'Sonyangcheng', 'cc', '2334', 1);
+
+-- ----------------------------
+-- View structure for report_in_ticket
+-- ----------------------------
+DROP VIEW IF EXISTS `report_in_ticket`;
+CREATE ALGORITHM = UNDEFINED DEFINER = `root`@`localhost` SQL SECURITY DEFINER VIEW `report_in_ticket` AS select sum((`order_ticket`.`quantity` * `order_ticket`.`price`)) AS `total_price`,cast(`order_ticket`.`order_date` as date) AS `date` from `order_ticket` group by cast(`order_ticket`.`order_date` as date);
 
 SET FOREIGN_KEY_CHECKS = 1;

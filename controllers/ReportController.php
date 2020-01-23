@@ -104,4 +104,18 @@ class ReportController extends \yii\web\Controller
         }
         return $this->render('report_foodbeverage');
     }
+
+    public function actionReportpod($rt=null)
+    {
+        if($rt=="month")
+        {
+            Yii::$app->session['report_url']=Url::toRoute(['report/reportpod','rt'=>'month']);
+        }elseif($rt=="year"){
+            Yii::$app->session['report_url']=Url::toRoute(['report/reportpod','rt'=>'year']);
+        }
+        else{
+            Yii::$app->session['report_url']=Url::toRoute(['report/reportpod','rt'=>'date']);
+        }
+        return $this->render('report_pod');
+    }
 }
