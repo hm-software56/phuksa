@@ -39,7 +39,7 @@ foreach($model_car as $model_car)
         <label class="control-label"><?=Yii::t('app','​ຈໍ​ຳ​ນວນ')." ".$model_car->name?></label>
         <input type="text" <?=(count($error_car)==0)?'disabled':''?> id="quantity_car_<?=$model_car->id?>"
             class="form-control" name="quantity_car_<?=$model_car->id?>"
-            value="<?=Yii::$app->session['sale_car']['quantity_car_'.$model_car->id.'']?>" />
+            value="<?=@Yii::$app->session['sale_car']['quantity_car_'.$model_car->id.'']?>" />
     </div>
     <?php
 }

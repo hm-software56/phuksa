@@ -39,7 +39,7 @@ foreach($model as $model)
         </div>
         <label class="control-label"><?=Yii::t('app','​ລວມ')." ".$model->name?></label>
         <input type="text" <?=(count($error)==0)?'disabled':''?> id="quantity_<?=$model->id?>" class="form-control"
-            name="quantity_<?=$model->id?>" value="<?=Yii::$app->session['sale']['quantity_'.$model->id.'']?>" />
+            name="quantity_<?=$model->id?>" value="<?=@Yii::$app->session['sale']['quantity_'.$model->id.'']?>" />
     </div>
     <?php
 }
@@ -72,7 +72,7 @@ foreach($model_car as $model_car)
         <label class="control-label"><?=Yii::t('app','​ລວມ')." ".$model_car->name?></label>
         <input type="text" <?=(count($error)==0)?'disabled':''?> id="quantity_car_<?=$model_car->id?>"
             class="form-control" name="quantity_car_<?=$model_car->id?>"
-            value="<?=Yii::$app->session['sale']['quantity_car_'.$model_car->id.'']?>" />
+            value="<?=@Yii::$app->session['sale']['quantity_car_'.$model_car->id.'']?>" />
     </div>
     <?php
 }
