@@ -68,7 +68,7 @@ class SiteController extends Controller
     {
         if(Yii::$app->user->id)
         {
-            if(Yii::$app->user->identity->type="Chef")
+            if(Yii::$app->user->identity->type=="Chef")
             {
                 return $this->redirect(['service-food-beverage/chef']);
             }else{
