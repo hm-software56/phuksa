@@ -15,10 +15,13 @@ use app\models\ItemOrder;
  */
 class ProductOrderController extends Controller
 {
-    public function init()
+    public function beforeAction($action)
     {
         if(Yii::$app->user->id){
             Yii::$app->layout="main_admin";
+            return true;
+        }else{
+            return $this->redirect(['site/login']);
         }
     }
     /**

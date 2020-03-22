@@ -68,7 +68,13 @@ class SiteController extends Controller
     {
         if(Yii::$app->user->id)
         {
-            return $this->render('indexadmin');
+            if(Yii::$app->user->identity->type="Chef")
+            {
+                return $this->redirect(['service-food-beverage/chef']);
+            }else{
+                return $this->render('indexadmin');
+            }
+            
         }else{
             return $this->render('index');
         }

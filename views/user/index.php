@@ -19,8 +19,33 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'username',
-            'type',
-            'status',
+            #'type',
+            [
+                'attribute'=>'type',
+                'value'=>function($model)
+                {
+                    if($model->type=='Admin')
+                    {
+                        return "ຜູ້​ດຄຸ້ມ​ຄອງລະ​ບົບ";
+                    }elseif($model->type=='User'){
+                        return "​ພະ​ນັ​ກ​ງານ​ຂາຍ";
+                    }else{
+                        return "ພະ​ນັ​ກ​ງານ​ຫ​້ອງ​ຄົວ";
+                    }
+                }
+            ],
+            [
+                'attribute'=>'status',
+                'value'=>function($model)
+                {
+                    if($model->status==1)
+                    {
+                        return "ໃຊ້​ງານ";
+                    }else{
+                        return "ປິດໃຊ້​ງານ";
+                    }
+                }
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

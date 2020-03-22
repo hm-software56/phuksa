@@ -19,10 +19,13 @@ class ServiceFoodBeverageController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function beforeAction($action)
     {
         if(Yii::$app->user->id){
             Yii::$app->layout="main_admin";
+            return true;
+        }else{
+            return $this->redirect(['site/login']);
         }
     }
     public function behaviors()
@@ -65,6 +68,17 @@ class ServiceFoodBeverageController extends Controller
         ]);
     }
 
+    public function actionChef()
+    {
+        if(Yii::$app->request->post())
+        {
+            $model=SaleFoodBeverage::find()->where(['id'=>(int)$_GET['id']])->one();
+            $model->status='Done';
+            $model->save();
+        }
+        $model=SaleFoodBeverage::find()->joinWith('itemFoodBeverages.serviceFoodBeverage','itemFoodBeverages')->where(['sale_food_beverage.status'=>'Paid'])->andWhere(['type'=>'Food'])->orderBy('date ASC')->all();
+        return $this->render('chef',['model'=>$model]);
+    }
     /**
      * Creates a new ServiceFoodBeverage model.
      * If creation is successful, the browser will be redirected to the 'view' page.

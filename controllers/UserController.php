@@ -18,10 +18,13 @@ class UserController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function beforeAction($action)
     {
         if(Yii::$app->user->id){
             Yii::$app->layout="main_admin";
+            return true;
+        }else{
+            return $this->redirect(['site/login']);
         }
     }
     public function behaviors()
@@ -73,8 +76,10 @@ class UserController extends Controller
     {
         $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password=Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            $model->save();
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -92,9 +97,15 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $password_old=$model->password;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($password_old!=$model->password)
+            {
+                $model->password=Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            }
+            $model->save();
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

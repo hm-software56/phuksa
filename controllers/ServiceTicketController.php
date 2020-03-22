@@ -21,10 +21,13 @@ class ServiceTicketController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function beforeAction($action)
     {
         if(Yii::$app->user->id){
             Yii::$app->layout="main_admin";
+            return true;
+        }else{
+            return $this->redirect(['site/login']);
         }
     }
     public function behaviors()

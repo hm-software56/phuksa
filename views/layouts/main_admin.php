@@ -59,9 +59,18 @@ AppAsset::register($this);
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
-                                    ["label" => "ບໍ​ລິ​ຫານ ​ຂໍ້​ມູນ​ໜ້າຫຼັກ", "url" =>Url::toRoute(['home/index']), "icon" => "home"],
-                                    ["label" => "ບໍ​ລິ​ຫານ ​ເມ​ນູ", "url" => Url::toRoute(['menu/index']), "icon" => "files-o"],
-                                    ["label" => "ບໍ​ລິ​ຫານ ເນື້ອ​ໃນ​ເມ​​ນູ", "url" =>  Url::toRoute(['content/index']), "icon" => "list"],
+                                    [
+                                        "label" => "ບໍ​ລິ​ຫານ ​ຂໍ້​ມູນ​ໜ້າຫຼັກ", "url" =>Url::toRoute(['home/index']), "icon" => "home",
+                                        'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
+                                    ],
+                                    [
+                                        "label" => "ບໍ​ລິ​ຫານ ​ເມ​ນູ", "url" => Url::toRoute(['menu/index']), "icon" => "files-o",
+                                        'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
+                                    ],
+                                    [
+                                        "label" => "ບໍ​ລິ​ຫານ ເນື້ອ​ໃນ​ເມ​​ນູ", "url" =>  Url::toRoute(['content/index']), "icon" => "list",
+                                        'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
+                                    ],
                                     
                                     [
                                         "label" => Yii::t('app','​ຕັ້ງ​ຄ່າ​ລະ​ບົບ'),
@@ -75,18 +84,22 @@ AppAsset::register($this);
                                             [
                                                 "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ'),
                                                 "url" =>Url::toRoute(['service-ticket/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
                                             ],
                                             [
                                                 "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ປີ້​​ນຳ​ໃຊ້​ພາ​ຫະ​ນະ'),
                                                 "url" =>Url::toRoute(['service-electric-car/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
                                             ],
                                             [
                                                 "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ສີນ​ຄ້າ'),
                                                 "url" =>Url::toRoute(['product/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
                                             ],
                                             [
                                                 "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ອາ​ຫານ ແລະ ​ເຄື່ອງ​ດື່ມ'),
                                                 "url" =>Url::toRoute(['service-food-beverage/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
                                             ],
                                             
                                         ],
@@ -152,32 +165,50 @@ AppAsset::register($this);
                         <div class="nav toggle">
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
-                        <ul class="nav navbar-nav navbar-left">
-                            <li class="">
-                                <a href="<?=Url::toRoute(['service-ticket/saleticket'])?>">
-                                    <span class=" fa fa-cart-arrow-down"></span>
-                                    <?=Yii::t('app','ຂາຍ​ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ')?>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?=Url::toRoute(['service-electric-car/saleticketcar'])?>">
-                                    <span class=" fa fa-shopping-cart"></span>
-                                    <?=Yii::t('app','ຂາຍ​ປີ້​ລົດ​ນຳ​ໃຊ້​ທ່ຽວ​ສວນ​ພືກ​ສາ')?>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?=Url::toRoute(['service-food-beverage/sale'])?>">
-                                    <span class=" fa fa-shopping-bag"></span>
-                                    <?=Yii::t('app','ຂາຍ​ອາ​ຫານ ແລະ ເຄື່ອງ​ດື່ມ')?>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?=Url::toRoute(['product-order/index'])?>">
-                                    <span class=" fa fa-shopping-basket"></span>
-                                    <?=Yii::t('app','ສັ່ງ​ຊື້​ສີນ​ຄ້າເຂົ້າ')?>
-                                </a>
-                            </li>
-                        </ul>
+                        <?php
+                        if(Yii::$app->user->identity->type=="Admin" || Yii::$app->user->identity->type=="User")
+                        {
+                        ?>
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="">
+                                    <a href="<?=Url::toRoute(['service-ticket/saleticket'])?>">
+                                        <span class=" fa fa-cart-arrow-down"></span>
+                                        <?=Yii::t('app','ຂາຍ​ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ')?>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?=Url::toRoute(['service-electric-car/saleticketcar'])?>">
+                                        <span class=" fa fa-shopping-cart"></span>
+                                        <?=Yii::t('app','ຂາຍ​ປີ້​ລົດ​ນຳ​ໃຊ້​ທ່ຽວ​ສວນ​ພືກ​ສາ')?>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?=Url::toRoute(['service-food-beverage/sale'])?>">
+                                        <span class=" fa fa-shopping-bag"></span>
+                                        <?=Yii::t('app','ຂາຍ​ອາ​ຫານ ແລະ ເຄື່ອງ​ດື່ມ')?>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?=Url::toRoute(['product-order/index'])?>">
+                                        <span class=" fa fa-shopping-basket"></span>
+                                        <?=Yii::t('app','ສັ່ງ​ຊື້​ສີນ​ຄ້າເຂົ້າ')?>
+                                    </a>
+                                </li>
+                            </ul>
+                            <?php
+                        }else{
+                            ?>
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="">
+                                    <a href="<?=Url::toRoute(['service-food-beverage/chef'])?>">
+                                        <span class=" fa fa-cart-arrow-down"></span>
+                                        <?=Yii::t('app','ລາຍ​ການ ອາ​ຫານ​ທີ່​ສັ່ງ​ຊື້')?>
+                                    </a>
+                                </li>
+                            </ul>
+                            <?php
+                        }
+                            ?>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">

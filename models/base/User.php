@@ -34,6 +34,7 @@ abstract class User extends \yii\db\ActiveRecord
     */
     const TYPE_ADMIN = 'Admin';
     const TYPE_USER = 'User';
+    const TYPE_Chef = 'Chef';
     var $enum_labels = false;
     /**
      * @inheritdoc
@@ -56,6 +57,7 @@ abstract class User extends \yii\db\ActiveRecord
             ['type', 'in', 'range' => [
                     self::TYPE_ADMIN,
                     self::TYPE_USER,
+                    self::TYPE_Chef,
                 ]
             ]
         ];
