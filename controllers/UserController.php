@@ -45,8 +45,14 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        if(Yii::$app->user->identity->type!="Admin")
+        {
+        $user=User::find()->where(['type'=>Yii::$app->user->identity->type]);
+        }else{
+            $user=User::find();
+        }
         $dataProvider = new ActiveDataProvider([
-            'query' => User::find(),
+            'query' =>$user,
         ]);
 
         return $this->render('index', [

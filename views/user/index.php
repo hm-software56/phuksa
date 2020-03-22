@@ -10,9 +10,16 @@ $this->title = Yii::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
+<?php
+if(Yii::$app->user->identity->type=="Admin")
+{
+?>
     <div align="right">
         <?= Html::a("<il class='fa fa-plus-circle'></il> ". Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </div>
+<?php
+}
+?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -50,6 +57,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template'=>'{update} {delete}',
+                'visibleButtons' => [
+                    'delete' => function ($model, $key, $index) {
+                        $user = Yii::$app->session["currentUser"];
+                        return (Yii::$app->user->identity->type=="Admin") ? true : false;
+                    },
+                ],
                 'buttons' => [
                     'update' => function ($url, $model) {
                         return Html::a(
