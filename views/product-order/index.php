@@ -23,14 +23,26 @@ if(Yii::$app->session->hasFlash('yes')){
 }
 ?>
 <div class="product-order-index">
-
-    <div align="right">
-        <?= Html::a("<il class='fa fa-plus-circle'></il> ". Yii::t('app', 'ສັ່ງ​ຊື້​ສີນ​ຄ້າ'), ['create'], ['class' => 'btn btn-success']) ?>
-    </div>
-
+    <?php
+    if(Yii::$app->session['r']!=1)
+    {
+    ?>
+        <div align="right">
+            <?= Html::a("<il class='fa fa-plus-circle'></il> ". Yii::t('app', 'ສັ່ງ​ຊື້​ສີນ​ຄ້າ'), ['create'], ['class' => 'btn btn-success']) ?>
+        </div>
+    <?php
+        }
+    ?>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <?php
+        if(isset($_GET['id']))
+        {
+            $filter=['Order'=>'ລໍ​ຖ້າຮັບສີນຄ້າເຂົ້າ','Done'=>'ສຳ​ເລັດຮັບສີນຄ້າເຂົ້າ'];
+        }else{
+            $filter=['Draft'=>'​ຮ່າງ​ການ​ສັ່ງ​ຊື້','Order'=>'ລໍ​ຖ້າຮັບສີນຄ້າເຂົ້າ'];
+        }
+       ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -48,16 +60,16 @@ if(Yii::$app->session->hasFlash('yes')){
                 'attribute' => 'status',
                 'label'=>Yii::t('app','ສະ​ຖາ​ນະສັ່ງ​ຊື້​ສີນ​ຄ້າ'),
                 'format' => 'raw',
-                'filter'=>['Draft'=>'​ຮ່າງ​ການ​ສັ່ງ​ຊື້','Order'=>'​ລໍ​ຖ້າ​ການ​ສັ່ງ​ຊື້','Done'=>'ສຳ​ເລັດສັ່ງ​ຊື້','Cancle'=>'ຍົກ​​ເລີກສັ່ງ​ຊື້'],
+                'filter'=>$filter,
                 'value' =>function($data) {
                     if($data->status=="Draft"){
                         return Yii::t('app','​ຮ່າງ​ການ​ສັ່ງ​ຊື້');
                     }elseif($data->status=="Order"){
-                        return Yii::t('app','​ລໍ​ຖ້າ​ການ​ສັ່ງ​ຊື້');
+                        return Yii::t('app','​ລໍ​ຖ້າຮັບສີນຄ້າເຂົ້າ');
                     }elseif($data->status=="Cancle"){
                         return Yii::t('app','ຍົກ​​ເລີກສັ່ງ​ຊື້');
                     }else{
-                        return Yii::t('app','ສຳ​ເລັດສັ່ງ​ຊື້');
+                        return Yii::t('app','ສຳ​ເລັດຮັບສີນຄ້າເຂົ້າ');
                     }
                 }
             ],

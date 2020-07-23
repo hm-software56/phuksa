@@ -43,11 +43,11 @@ class ProductOrderController extends Controller
      * Lists all ProductOrder models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id=FALSE)
     {
         $searchModel = new ProductOrderSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$id);
+        Yii::$app->session['r']=$id;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

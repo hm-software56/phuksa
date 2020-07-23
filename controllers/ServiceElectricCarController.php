@@ -45,7 +45,7 @@ class ServiceElectricCarController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => ServiceElectricCar::find(),
+            'query' => ServiceElectricCar::find()->where(['status'=>1]),
         ]);
 
         return $this->render('index', [
@@ -116,7 +116,7 @@ class ServiceElectricCarController extends Controller
 
     public function actionSaleticketcar()
     {
-        $model_car=ServiceElectricCar::find()->all();
+        $model_car=ServiceElectricCar::find()->where(['status'=>1])->all();
         $ordersticket_car=new OrderElectricCar;
         $error_car=[];
         if(isset($_POST['confirm_sale']))
@@ -202,7 +202,9 @@ class ServiceElectricCarController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model=$this->findModel($id);
+        $model->status=0;
+        $model->save();
 
         return $this->redirect(['index']);
     }

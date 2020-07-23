@@ -18,7 +18,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'price')->textInput() ?>
 
-    <?= $form->field($model, 'status')->dropDownList([1=>'Active',0=>'Inactive'],['prompt'=>'']);?>
+    <?php
+        echo $form->field($model, 'status')->hiddenInput(['value'=>1])->label(false);
+     #$form->field($model, 'status')->dropDownList([1=>'Active',0=>'Inactive'],['prompt'=>'']);
+     ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

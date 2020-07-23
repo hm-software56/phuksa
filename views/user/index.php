@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use app\models\UserProfile;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -24,8 +24,26 @@ if(Yii::$app->user->identity->type=="Admin")
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'username',
+            [
+                'attribute'=>'id',
+                'label'=>Yii::t('app','ຊີ່ ແລະ ນາມສະກຸນ'),
+                'value'=>function($model)
+                    {
+                        $emp=UserProfile::find()->where(['user_id'=>$model->id])->one();
+                        if($emp)
+                        {
+                            return $emp->first_name. " ". $emp->last_name;
+                        }
+                    }
+            ],
+            [
+                'attribute'=>'username',
+                'label'=>Yii::t('app','ຊີ່ເຂົ້າລະບົບ'),
+                'value'=>function($model)
+                    {
+                        return $model->username;
+                    }
+            ],
             #'type',
             [
                 'attribute'=>'type',

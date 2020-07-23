@@ -60,47 +60,106 @@ AppAsset::register($this);
                             [
                                 "items" => [
                                     [
-                                        "label" => "ບໍ​ລິ​ຫານ ​ຂໍ້​ມູນ​ໜ້າຫຼັກ", "url" =>Url::toRoute(['home/index']), "icon" => "home",
-                                        'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
-                                    ],
-                                    [
-                                        "label" => "ບໍ​ລິ​ຫານ ​ເມ​ນູ", "url" => Url::toRoute(['menu/index']), "icon" => "files-o",
-                                        'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
-                                    ],
-                                    [
-                                        "label" => "ບໍ​ລິ​ຫານ ເນື້ອ​ໃນ​ເມ​​ນູ", "url" =>  Url::toRoute(['content/index']), "icon" => "list",
-                                        'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
-                                    ],
-                                    
-                                    [
-                                        "label" => Yii::t('app','​ຕັ້ງ​ຄ່າ​ລະ​ບົບ'),
+                                        "label" => Yii::t('app','ຈັດການຂໍ້ມູນເວບໄຊຣ'),
                                         "url" => "#",
                                         "icon" => "table",
                                         "items" => [
                                             [
-                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ຜູ້​ໃ້​ລະ​ບົບ'),
+                                                "label" =>Yii::t('app','ຈັດການ ເມນູເວບໄຊຣ'),
+                                                "url" =>Url::toRoute(['menu/index']),
+                                            ],
+
+                                            [
+                                                "label" =>Yii::t('app','ຈັດການ ເນື້ອໃນເມນູ'),
+                                                "url" =>Url::toRoute(['content/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ຈັດການ ເນື້ອໃນໝ້າຫຼັກ'),
+                                                "url" =>Url::toRoute(['home/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
+                                            ],
+                                            
+                                        ],
+                                    ],
+
+                                    [
+                                        "label" => Yii::t('app','ຈັດການຂໍ້ມູນພື້ນຖານ'),
+                                        "url" => "#",
+                                        "icon" => "table",
+                                        "items" => [
+                                            [
+                                                "label" =>Yii::t('app','ຈັດການ ຂໍ້ມູນພະນັກງານ'),
                                                 "url" =>Url::toRoute(['user/index']),
                                             ],
                                             [
-                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ'),
+                                                "label" =>Yii::t('app','ຈັດການ ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ'),
                                                 "url" =>Url::toRoute(['service-ticket/index']),
                                                 'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
                                             ],
                                             [
-                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ປີ້​​ນຳ​ໃຊ້​ພາ​ຫະ​ນະ'),
+                                                "label" =>Yii::t('app','ຈັດການ ປີ້​​ນຳ​ໃຊ້​ພາ​ຫະ​ນະ'),
                                                 "url" =>Url::toRoute(['service-electric-car/index']),
                                                 'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
                                             ],
                                             [
-                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ສີນ​ຄ້າ'),
-                                                "url" =>Url::toRoute(['product/index']),
-                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
-                                            ],
-                                            [
-                                                "label" =>Yii::t('app','ບໍ​ລິ​ຫານ ອາ​ຫານ ແລະ ​ເຄື່ອງ​ດື່ມ'),
+                                                "label" =>Yii::t('app','ຈັດການ ອາ​ຫານ ແລະ ​ເຄື່ອງ​ດື່ມ'),
                                                 "url" =>Url::toRoute(['service-food-beverage/index']),
                                                 'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
                                             ],
+                                            [
+                                                "label" =>Yii::t('app','ຈັດການ ສີນ​ຄ້າ'),
+                                                "url" =>Url::toRoute(['product/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin")?1:0
+                                            ],
+                                            
+                                            
+                                        ],
+                                    ],
+
+                                    [
+                                        "label" => Yii::t('app','ບໍລິການ'),
+                                        "url" => "#",
+                                        "icon" => "table",
+                                        "items" => [
+                                            [
+                                                "label" =>Yii::t('app','ບໍລິການຂາຍ ປີ້​ເຂົ້າ​ສວນ​ພືກ​ສາ'),
+                                                "url" =>Url::toRoute(['service-ticket/saleticket']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin" || Yii::$app->user->identity->type=="User")?1:0
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ບໍລິການຂາຍ ປີ້​​ນຳ​ໃຊ້​ພາ​ຫະ​ນະ'),
+                                                "url" =>Url::toRoute(['service-electric-car/saleticketcar']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin" || Yii::$app->user->identity->type=="User")?1:0
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ບໍລິການຂາຍ ອາ​ຫານ ແລະ ​ເຄື່ອງ​ດື່ມ'),
+                                                "url" =>Url::toRoute(['service-food-beverage/sale']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin" || Yii::$app->user->identity->type=="User")?1:0
+                                            ],
+                                            
+                                            
+                                        ],
+                                    ],
+
+                                    [
+                                        "label" => Yii::t('app','ສັ່ງ​ຊື້​ສີນ​ຄ້າ'),
+                                        "url" => "#",
+                                        "icon" => "table",
+                                        "items" => [
+                                            [
+                                                "label" =>Yii::t('app','ສັ່ງ​ຊື້​ສີນ​ຄ້າເຂົ້າ'),
+                                                "url" =>Url::toRoute(['product-order/index']),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin" || Yii::$app->user->identity->type=="User")?1:0
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ຮັບ​ສີນ​ຄ້າສັ່ງ​ຊື້ເຂົ້າ'),
+                                                "url" =>Url::toRoute(['product-order/index','id'=>True]),
+                                                'visible' =>(Yii::$app->user->identity->type=="Admin" || Yii::$app->user->identity->type=="User")?1:0
+                                            ],
+                                            
+                                            
+                                            
                                             
                                         ],
                                     ],

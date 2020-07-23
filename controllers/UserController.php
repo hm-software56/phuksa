@@ -47,9 +47,9 @@ class UserController extends Controller
     {
         if(Yii::$app->user->identity->type!="Admin")
         {
-        $user=User::find()->where(['type'=>Yii::$app->user->identity->type]);
+        $user=User::find()->where(['type'=>Yii::$app->user->identity->type,'status'=>1]);
         }else{
-            $user=User::find();
+            $user=User::find()->where(['status'=>1]);
         }
         $dataProvider = new ActiveDataProvider([
             'query' =>$user,
@@ -81,15 +81,27 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-
-        if ($model->load(Yii::$app->request->post())) {
+        $employee=new UserProfile();
+        if ($model->load(Yii::$app->request->post()) && $employee->load(Yii::$app->request->post())) {
             $model->password=Yii::$app->getSecurity()->generatePasswordHash($model->password);
-            $model->save();
-            return $this->redirect(['index']);
+            if($model->save()){
+                $employee->user_id=$model->id;
+                $employee->photo = UploadedFile::getInstance($employee, 'photo');
+                if ($employee->photo){       
+                    $photo_name='profile_'.date('Ymdhis').'.' . $employee->photo->extension;      
+                    $employee->photo->saveAs(\Yii::$app->basePath.'/web/images/' . $photo_name);
+                    $employee->photo=$photo_name;
+                }
+                if($employee->save())
+                {
+                    return $this->redirect(['index']);
+                }
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'employee'=>$employee
         ]);
     }
 
@@ -104,18 +116,37 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
         $password_old=$model->password;
-
-        if ($model->load(Yii::$app->request->post())) {
+        $employee=UserProfile::find()->where(['user_id'=>$id])->one();
+        if (!$employee)
+        {
+            $employee=new UserProfile();
+        }
+        $photo_name=$employee->photo;
+        if ($model->load(Yii::$app->request->post()) && $employee->load(Yii::$app->request->post())) {
             if($password_old!=$model->password)
             {
                 $model->password=Yii::$app->getSecurity()->generatePasswordHash($model->password);
             }
-            $model->save();
-            return $this->redirect(['index']);
+            if($model->save()){
+                $employee->user_id=$model->id;
+                $employee->photo = UploadedFile::getInstance($employee, 'photo');
+                if ($employee->photo){       
+                    $photo_name='profile_'.date('Ymdhis').'.' . $employee->photo->extension;      
+                    $employee->photo->saveAs(\Yii::$app->basePath.'/web/images/' . $photo_name);
+                    $employee->photo=$photo_name;
+                }else{
+                    $employee->photo=$photo_name;
+                }
+                if($employee->save())
+                {
+                    return $this->redirect(['index']);
+                }
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'employee'=>$employee
         ]);
     }
 
@@ -158,8 +189,10 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        #$this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->status=0;
+        $model->save();
         return $this->redirect(['index']);
     }
 

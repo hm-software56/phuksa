@@ -58,31 +58,63 @@ if($model->status=="Done")
             <div class="md-step-bar-right"></div>
         </a>
     </div>
-    <div class="md-step <?=($cancle==true)?"active":" "?>">
+    <!--<div class="md-step <?=($cancle==true)?"active":" "?>">
         <a href=" <?=$hrf_cancle?>">
             <div class="md-step-circle"><span class="fa fa-exclamation-circle"></span></div>
             <div class="md-step-title"><?=Yii::t('app', 'ຍົກ​ເລີກສັ່ງ​ຊື້')?></div>
             <div class="md-step-bar-left"></div>
             <div class="md-step-bar-right"></div>
         </a>
-    </div>
+    </div>-->
+    <?php
+        if($model->status=="Order" && Yii::$app->session['r']==1)
+        {
+    ?>
+        <div class="md-step <?=($done==true)?"active done":" "?>">
+            <a href=" <?=$hrf_done?>">
+                <div class="md-step-circle"><span class="fa fa-check"></span></div>
+                <div class="md-step-title"><?=Yii::t('app', 'ຮັບສີນຄ້າເຂົ້າ')?></div>
+                <div class="md-step-bar-left"></div>
+                <div class="md-step-bar-right"></div>
+            </a>
+        </div>
+    <?php
+        }elseif($model->status=="Done" && Yii::$app->session['r']==1)
+        {
+    ?>
+        <div class="md-step done">
+            <a href=" <?=$hrf_done?>">
+                <div class="md-step-circle"><span class="fa fa-check"></span></div>
+                <div class="md-step-title"><?=Yii::t('app', 'ຮັບສີນຄ້າເຂົ້າ')?></div>
+                <div class="md-step-bar-left"></div>
+                <div class="md-step-bar-right"></div>
+            </a>
+        </div>
+        <div class="md-step active done">
+            <a href=" <?=$hrf_done?>">
+                <div class="md-step-circle"><span class="fa fa-check"></span></div>
+                <div class="md-step-title"><?=Yii::t('app', 'ສໍາເລັດຮັບເຂົ້າ')?></div>
+                <div class="md-step-bar-left"></div>
+                <div class="md-step-bar-right"></div>
+            </a>
+        </div>
+    <?php
+        }
 
-    <div class="md-step <?=($done==true)?"active done":" "?>">
-        <a href=" <?=$hrf_done?>">
-            <div class="md-step-circle"><span class="fa fa-check"></span></div>
-            <div class="md-step-title"><?=Yii::t('app', 'ສຳ​ເລັດສັ່ງ​ຊື້')?></div>
-            <div class="md-step-bar-left"></div>
-            <div class="md-step-bar-right"></div>
-        </a>
-    </div>
-    <div class="md-step">
-        <a href="#" onclick="printDiv('print_order')">
-            <div class="md-step-circle" style="background-color:red !important"><span class="fa fa-print"></span></div>
-            <div class="md-step-title" style="color:black !important"><?=Yii::t('app', 'ພີມ​ໃບ​ສັ່ງ​ຊື້')?></div>
-            <div class="md-step-bar-left"></div>
-            <div class="md-step-bar-right"></div>
-        </a>
-    </div>
+    if (Yii::$app->session['r']!=1)
+    {
+    ?>
+        <div class="md-step">
+            <a href="#" onclick="printDiv('print_order')">
+                <div class="md-step-circle" style="background-color:red !important"><span class="fa fa-print"></span></div>
+                <div class="md-step-title" style="color:black !important"><?=Yii::t('app', 'ພີມ​ໃບ​ສັ່ງ​ຊື້')?></div>
+                <div class="md-step-bar-left"></div>
+                <div class="md-step-bar-right"></div>
+            </a>
+        </div>
+    <?php
+    }
+    ?>
 </div>
 <script>
 function printDiv(divName) {

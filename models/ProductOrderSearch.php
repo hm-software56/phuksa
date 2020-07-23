@@ -38,7 +38,7 @@ class ProductOrderSearch extends ProductOrder
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id)
     {
         $query = ProductOrder::find();
 
@@ -67,6 +67,11 @@ class ProductOrderSearch extends ProductOrder
             ->andFilterWhere(['like', 'details', $this->details])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'order_date', $this->order_date]);
+        if($id==True){
+            $query->andFilterWhere(['IN','status',['Order','Done']]);
+        }else{
+            $query->andFilterWhere(['IN','status',['Draft','Cancle']]);
+        }
 
         return $dataProvider;
     }

@@ -32,7 +32,7 @@ if(Yii::$app->session->hasFlash('yes')){
             'code',
             'name',
             'price',
-            [
+            /*[
                 'attribute' => 'status',
                 'format' => 'raw',
                 'value' => function($data) {
@@ -43,7 +43,7 @@ if(Yii::$app->session->hasFlash('yes')){
                         return Yii::t('app','Inactive');
                     }
                 },
-            ],
+            ],*/
             //'date',
             //'user_id',
 

@@ -16,9 +16,7 @@ use Yii;
  * @property string $date
  * @property string $remark
  * @property integer $user_id
- *
- * @property \app\models\OrderTicket[] $orderTickets
- * @property \app\models\User $user
+ * @property integer $status
  * @property string $aliasModel
  */
 abstract class ServiceTicket extends \yii\db\ActiveRecord
@@ -44,10 +42,9 @@ abstract class ServiceTicket extends \yii\db\ActiveRecord
             [['price'], 'number'],
             [['date'], 'safe'],
             [['remark'], 'string'],
-            [['user_id'], 'integer'],
+            [['user_id', 'status'], 'integer'],
             [['code'], 'string', 'max' => 255],
-            [['name'], 'string', 'max' => 45],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\User::className(), 'targetAttribute' => ['user_id' => 'id']]
+            [['name'], 'string', 'max' => 45]
         ];
     }
 
@@ -57,30 +54,15 @@ abstract class ServiceTicket extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'code' => Yii::t('app', 'Code'),
-            'name' => Yii::t('app', 'Name'),
-            'price' => Yii::t('app', 'Price'),
-            'date' => Yii::t('app', 'Date'),
-            'remark' => Yii::t('app', 'Remark'),
-            'user_id' => Yii::t('app', 'User ID'),
+            'id' => 'ID',
+            'code' => 'Code',
+            'name' => 'Name',
+            'price' => 'Price',
+            'date' => 'Date',
+            'remark' => 'Remark',
+            'user_id' => 'User ID',
+            'status' => 'Status',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOrderTickets()
-    {
-        return $this->hasMany(\app\models\OrderTicket::className(), ['service_ticket_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(\app\models\User::className(), ['id' => 'user_id']);
     }
 
 

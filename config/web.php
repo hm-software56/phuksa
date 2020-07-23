@@ -43,7 +43,7 @@ $config = [
         ],
         'i18n' => [
             'translations' => [
-                'yii' => [
+                '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages', // if advanced application, set @frontend/messages
                     'sourceLanguage' => 'en',

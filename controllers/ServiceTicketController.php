@@ -49,7 +49,7 @@ class ServiceTicketController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => ServiceTicket::find(),
+            'query' => ServiceTicket::find()->where(['status'=>1]),
         ]);
 
         return $this->render('index', [
@@ -121,8 +121,8 @@ class ServiceTicketController extends Controller
 
     public function actionSaleticket()
     {
-        $model=ServiceTicket::find()->all();
-        $model_car=ServiceElectricCar::find()->all();
+        $model=ServiceTicket::find()->where(['status'=>1])->all();
+        $model_car=ServiceElectricCar::find()->where(['status'=>1])->all();
         $ordersticket=new OrderTicket;
         $ordersticket_car=new OrderElectricCar;
         $error=[];
@@ -255,7 +255,9 @@ class ServiceTicketController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model=$this->findModel($id);
+        $model->status=0;
+        $model->save();
 
         return $this->redirect(['index']);
     }
