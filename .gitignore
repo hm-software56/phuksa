@@ -30,3 +30,9 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+database/Data_Flow_1.vsdx
+database/database_dictionary.html
+database/Drawing1.vsdx
+database/phuksa_db.mwb
+database/phuksa_db.mwb.bak
+database/phuksa_db.sql
