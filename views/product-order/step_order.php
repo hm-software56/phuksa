@@ -101,8 +101,8 @@ if($model->status=="Done")
     <?php
         }
 
-    if (Yii::$app->session['r']!=1)
-    {
+    //if (Yii::$app->session['r']!=1)
+    //{
     ?>
         <div class="md-step">
             <a href="#" onclick="printDiv('print_order')">
@@ -113,7 +113,7 @@ if($model->status=="Done")
             </a>
         </div>
     <?php
-    }
+   // }
     ?>
 </div>
 <script>

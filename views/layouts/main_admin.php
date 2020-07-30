@@ -163,7 +163,26 @@ AppAsset::register($this);
                                             
                                         ],
                                     ],
-
+                                    [
+                                        "label" => Yii::t('app','ຄົ້ນຫາ'),
+                                        "url" => "#",
+                                        "icon" => "list",
+                                        "items" => [
+                                            [
+                                                "label" =>Yii::t('app','ຄົ້ນຫາ​ການ​ຂາຍ​ປີ້​ເ​ຂົ້າ​ສວນ'),
+                                                "url" =>Url::toRoute(['search/searchticket']),
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ຄົ້ນຫາ​ການ​ຂາຍ​ປີ້​ລົດ​ຳ​ໃຊ້​ທ່ຽວ​ສວນ'),
+                                                "url" =>Url::toRoute(['search/searchcar']),
+                                            ],
+                                            [
+                                                "label" =>Yii::t('app','ຄົ້ນຫາການ​ຂາຍອາ​ຫານ ​ແລະ​ ເຄື່ອງ​ດີ່ມ'),
+                                                "url" =>Url::toRoute(['search/searchfb']),
+                                            ],
+                                            
+                                        ],
+                                    ],
                                     [
                                         "label" => Yii::t('app','​ລາຍ​ງາຍ'),
                                         "url" => "#",

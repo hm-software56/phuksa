@@ -35,7 +35,19 @@ echo $this->render('step_order',['model'=>$model]);
                     </td>
                     <td align="center">
                         <div align="center">
-                            <h2><b><?=Yii::t('app','ໃບ​ສັ່ງ​ຊື້ສີນ​ຄ້າ')?></b></h2>
+                            <?php
+                            if (Yii::$app->session['r']==1)
+                            {
+                                ?>
+                                <h2><b><?=Yii::t('app','ໃບຮັບສີນ​ຄ້າ')?></b></h2>
+                                <?php
+                            }else{
+                                ?>
+                                <h2><b><?=Yii::t('app','ໃບ​ສັ່ງ​ຊື້ສີນ​ຄ້າ')?></b></h2>
+                                <?php
+                            }
+                                ?>
+                            
                         </div>
                     </td>
                 </tr>
@@ -47,19 +59,19 @@ echo $this->render('step_order',['model'=>$model]);
             'attributes' => [
                 [
                     'attribute' => 'order_code',
-                    'label'=>Yii::t('app','ລະ​ຫັດ​ສັ່ງ​ຊື້​ສີນ​ຄ້າ'),
+                    'label'=>Yii::t('app','ລະ​ຫັດ​'),
                     'format' => 'raw',
                     'value' =>$model->order_code,
                 ],
                 [
                     'attribute' => 'order_date',
-                    'label'=>Yii::t('app','ວັນ​ທີ່ສັ່ງ​ຊື້​ສີນ​ຄ້າ'),
+                    'label'=>Yii::t('app','ວັນ​ທີ່'),
                     'format' => 'raw',
                     'value' =>date('d-m-Y',strtotime($model->order_date)),
                 ],
                 [
                     'attribute' => 'status',
-                    'label'=>Yii::t('app','ສະ​ຖາ​ນະສັ່ງ​ຊື້​ສີນ​ຄ້າ'),
+                    'label'=>Yii::t('app','ສະ​ຖາ​ນະ'),
                     'format' => 'raw',
                     'value' =>function($data) {
                         if($data->status=="Draft"){
@@ -69,7 +81,7 @@ echo $this->render('step_order',['model'=>$model]);
                         }elseif($data->status=="Cancle"){
                             return Yii::t('app','ຍົກ​​ເລີກສັ່ງ​ຊື້');
                         }else{
-                            return Yii::t('app','ສຳ​ເລັດສັ່ງ​ຊື້');
+                            return (Yii::$app->session['r']==1)?Yii::t('app','ສຳ​ເລັດຮັບສີນ​ຄ້າ'):Yii::t('app','ສຳ​ເລັດສັ່ງ​ຊື້');
                         }
                     }
                 ],
